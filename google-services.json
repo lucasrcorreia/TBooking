@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "384384031678",
+    "firebase_url": "https://tbooking-cf5a3.firebaseio.com",
+    "project_id": "tbooking-cf5a3",
+    "storage_bucket": "tbooking-cf5a3.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:384384031678:android:b9b6d64a8df9a760",
+        "android_client_info": {
+          "package_name": "rolu18oy.ju.se.layoutapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "384384031678-bvolbpqfuda1lqm36i404e8v43ra52c8.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "rolu18oy.ju.se.layoutapp",
+            "certificate_hash": "b0c0cb49f86468fbcb54e46e70a53c37f311bc9e"
+          }
+        },
+        {
+          "client_id": "384384031678-7intugnbnaufmhuov65ap36ma8o8482c.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD-ClzXVnpdezYIR2DlT-lebiXheAPwFSs"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "384384031678-7intugnbnaufmhuov65ap36ma8o8482c.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
