@@ -18,4 +18,6 @@
     <string name="change_password">Change password</string>
     <string name="delete_account">Delete account</string>
     <string name="logout">Logout</string>
+    <string name="first_name">First Name</string>
+    <string name="last_name">Last Name</string>
 </resources>
