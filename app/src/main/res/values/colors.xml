@@ -8,4 +8,5 @@
     <color name="colorGoogle">#FFFFFF</color>
     <color name="colorTextBlack">#000000</color>
     <color name="colorTextWhite">#FFFFFF</color>
+    <color name="colorTextGrey">#555555</color>
 </resources>

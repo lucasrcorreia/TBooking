@@ -20,4 +20,7 @@
     <string name="logout">Logout</string>
     <string name="first_name">First Name</string>
     <string name="last_name">Last Name</string>
+    <string name="restaurants">Restaurants</string>
+    <string name="booked">Booked</string>
+    <string name="user">User</string>
 </resources>
