@@ -87,6 +87,7 @@
         android:layout_marginStart="48dp"
         android:layout_marginTop="24dp"
         android:layout_marginEnd="48dp"
+        android:onClick="btsignup"
         android:background="@color/colorTextBlack"
         android:text="@string/create_account"
         android:textColor="@color/colorTextWhite"
