@@ -10,11 +10,10 @@ import android.view.ViewGroup;
 import rolu18oy.ju.se.layoutapp.R;
 
 
-public class User_fragment extends Fragment {
+public class Rest_description_fragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.user_fragments, null);
+        return inflater.inflate(R.layout.rest_description_fragment, null);
     }
-
 }

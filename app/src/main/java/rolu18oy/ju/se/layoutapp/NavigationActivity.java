@@ -7,12 +7,13 @@ import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
 
 import rolu18oy.ju.se.layoutapp.Fragments.Booked_fragment;
 import rolu18oy.ju.se.layoutapp.Fragments.Restaurants_fragment;
 import rolu18oy.ju.se.layoutapp.Fragments.User_fragment;
 
-public class MainActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener {
+public class NavigationActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener {
 
 
     @Override
@@ -61,4 +62,10 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         }
         return false;
     }
+    public void startLoginAct (View view){
+        Intent intent = new Intent(this, LoginActivity.class);
+        startActivity(intent);
+
+    }
+
 }
