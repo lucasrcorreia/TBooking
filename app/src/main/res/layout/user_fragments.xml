@@ -61,7 +61,7 @@ Last name"
         app:layout_constraintTop_toBottomOf="@+id/logout" />
 
     <Button
-        android:id="@+id/change_pass"
+        android:id="@+id/btnChangePass"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -87,6 +87,6 @@ Last name"
         android:text="@string/sign_in"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/change_pass" />
+        app:layout_constraintTop_toBottomOf="@+id/btnChangePass" />
 
 </android.support.constraint.ConstraintLayout>
