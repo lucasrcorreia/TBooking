@@ -68,4 +68,10 @@ public class NavigationActivity extends AppCompatActivity implements BottomNavig
 
     }
 
+    public void LogOutstartLoginAct (View view){
+        Intent intent = new Intent(this, LoginActivity.class);
+        startActivity(intent);
+
+    }
+
 }
