@@ -1,4 +1,5 @@
 package rolu18oy.ju.se.layoutapp;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -35,6 +36,7 @@ public class CreateAccountActivity extends AppCompatActivity {
     public void init(){
         database = FirebaseDatabase.getInstance();
         users = database.getReference("Users");
+
         mAuth = FirebaseAuth.getInstance();
 
         edtMail = (EditText) findViewById(R.id.username);
@@ -69,11 +71,17 @@ public class CreateAccountActivity extends AppCompatActivity {
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
                         if(dataSnapshot.child(user.getEmail()).exists()){
+
                             Toast.makeText(CreateAccountActivity.this, "The Email already exits \n Email ", Toast.LENGTH_SHORT).show();
                         }
 
                         else{
+
+                            SaveSharedPreference.setLoggedIn(getApplicationContext(), true, user.getEmail().replace(",","."));
                             createAccount(user.getEmail(),user.getPassword());
+                            Intent intent = new Intent(CreateAccountActivity.this, NavigationActivity.class);
+                            startActivity(intent);
+
                         }
                     }
                     @Override

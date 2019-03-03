@@ -23,6 +23,14 @@
           }
         },
         {
+          "client_id": "384384031678-32d2u0qm1079724q1tkssqo0b8d8iuve.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "rolu18oy.ju.se.layoutapp",
+            "certificate_hash": "911704a534012c1c508afeafc0b45c75b4ecf60d"
+          }
+        },
+        {
           "client_id": "384384031678-7intugnbnaufmhuov65ap36ma8o8482c.apps.googleusercontent.com",
           "client_type": 3
         }

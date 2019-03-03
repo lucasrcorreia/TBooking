@@ -1,6 +1,7 @@
 package rolu18oy.ju.se.layoutapp;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
@@ -15,6 +16,9 @@ import rolu18oy.ju.se.layoutapp.Fragments.User_fragment;
 
 public class NavigationActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener {
 
+    String email;
+    SharedPreferences sp;
+    String Login;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
