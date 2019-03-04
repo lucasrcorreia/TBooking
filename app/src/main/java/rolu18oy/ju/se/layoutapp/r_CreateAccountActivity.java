@@ -67,6 +67,8 @@ public class r_CreateAccountActivity extends AppCompatActivity{
 
 
 
+
+
     public void init(){
 
         database = FirebaseDatabase.getInstance();
@@ -83,6 +85,8 @@ public class r_CreateAccountActivity extends AppCompatActivity{
         edtRestName= findViewById(R.id.edtRestName);
         edtRestPassword = findViewById(R.id.edtRestPassword);
         edtrestDescription = findViewById(R.id.edtrestDescription);
+
+        mProgressBar = findViewById(R.id.progress_bar);
 
         mStorageRef = FirebaseStorage.getInstance().getReference("uploads");
         mDatabaseRef = FirebaseDatabase.getInstance().getReference("uploads");
@@ -131,14 +135,14 @@ public class r_CreateAccountActivity extends AppCompatActivity{
                     uploadFile(mImageUriMenu);
 
                     SaveSharedPreference.setLoggedIn(getApplicationContext(), true, restaurant.getPassword().replace(",","."));
-                    createRestAccount(restaurant.getRestaurantEmail(), restaurant.getPassword());
+                    createRestAccount();
                     Intent intent = new Intent(r_CreateAccountActivity.this, r_NavigationActivity.class);
                     startActivity(intent);
                 }
             }
         });
     }
-    public void createRestAccount(String email, String password){
+    public void createRestAccount(){
         mAuth.createUserWithEmailAndPassword(edtRestEmail.getText().toString(), edtRestPassword.getText().toString())
                 .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
@@ -162,6 +166,7 @@ public class r_CreateAccountActivity extends AppCompatActivity{
             mUploadTask = fileReference.putFile(mImageUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                 @Override
                 public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+
                     Handler handler = new Handler();
                     handler.postDelayed(new Runnable() {
                         @Override
@@ -172,6 +177,7 @@ public class r_CreateAccountActivity extends AppCompatActivity{
                     Upload upload = new Upload(restaurant.getRestaurantName().trim(), taskSnapshot.getStorage().getDownloadUrl().toString());
                     String uploadId = mDatabaseRef.push().getKey();
                     mDatabaseRef.child(uploadId).setValue(upload);
+
                 }
             }).addOnFailureListener(new OnFailureListener() {
                 @Override
@@ -225,8 +231,10 @@ public class r_CreateAccountActivity extends AppCompatActivity{
             if(requestCode == PICK_IMAGE_REQUEST_PROFILE){
                 mImageUriProfile = data.getData();
                 viewImgRestProfile.setImageURI(mImageUriProfile);
+
                 //Picasso.with(this).load(mImageUriProfile).into(viewImgRestProfile);
             }
+
             if(requestCode == PICK_IMAGE_REQUEST_MENU){
                 mImageUriMenu = data.getData();
                 viewImgRestMenu.setImageURI(mImageUriMenu);

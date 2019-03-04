@@ -91,6 +91,18 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/edtRestPassword" />
 
+        <ImageView
+            android:id="@+id/imgRestPicture"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_marginStart="48dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="48dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/edtrestDescription"
+            android:src="@drawable/ic_person_white_24dp" />
+
         <Button
             android:id="@+id/restPicture"
             android:layout_width="match_parent"
@@ -104,6 +116,18 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/imgRestPicture" />
+
+        <ImageView
+            android:id="@+id/imgRestMenu"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_marginStart="48dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="48dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/restPicture"
+            android:src="@drawable/ic_person_white_24dp" />
 
         <Button
             android:id="@+id/restMenu"
@@ -119,6 +143,15 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/imgRestMenu" />
 
+        <ProgressBar
+            android:id="@+id/progress_bar"
+            style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@+id/btnCreateAccount"
+            android:layout_marginBottom="16dp" />
+
+
     <Button
         android:id="@+id/btnCreateAccount"
         android:layout_width="match_parent"
@@ -131,7 +164,7 @@
         android:textColor="@color/colorTextWhite"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/restMenu" />
+        app:layout_constraintTop_toBottomOf="@+id/imgRestMenu" />
 
     <Button
         android:id="@+id/fb_signup"
@@ -145,7 +178,7 @@
         android:textColor="@color/colorTextWhite"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnCreateAccount" />
+        app:layout_constraintTop_toBottomOf="@+id/progress_bar" />
 
     <Button
         android:id="@+id/google_signup"
@@ -160,30 +193,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/fb_signup" />
-
-        <ImageView
-            android:id="@+id/imgRestPicture"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
-            android:layout_marginStart="48dp"
-            android:layout_marginTop="24dp"
-            android:layout_marginEnd="48dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/edtrestDescription"
-            android:src="@drawable/ic_person_white_24dp" />
-
-        <ImageView
-            android:id="@+id/imgRestMenu"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
-            android:layout_marginStart="48dp"
-            android:layout_marginTop="24dp"
-            android:layout_marginEnd="48dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/restPicture"
-            android:src="@drawable/ic_person_white_24dp" />
 
     </android.support.constraint.ConstraintLayout>
 </ScrollView>

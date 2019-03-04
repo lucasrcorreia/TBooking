@@ -25,6 +25,7 @@ public class NavigationActivity extends AppCompatActivity implements BottomNavig
         super.onCreate(savedInstanceState);
         setContentView(R.layout.navigation_activity);
 
+        SaveSharedPreference.setLoggedIn(getApplicationContext(), false, "no");
         //loading the default fragment
         loadFragment(new Restaurants_fragment());
 

@@ -85,7 +85,7 @@ public class CreateAccountActivity extends AppCompatActivity {
                         else{
 
                             SaveSharedPreference.setLoggedIn(getApplicationContext(), true, user.getEmail().replace(",","."));
-                            createUserAccount(user.getEmail(),user.getPassword());
+                            createUserAccount();
                             Intent intent = new Intent(CreateAccountActivity.this, NavigationActivity.class);
                             startActivity(intent);
 
@@ -98,7 +98,7 @@ public class CreateAccountActivity extends AppCompatActivity {
             }
         });
     }
-    private void createUserAccount(String email, String password){
+    private void createUserAccount(){
         mAuth.createUserWithEmailAndPassword(edtMail.getText().toString(), edtPassword.getText().toString())
                 .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
