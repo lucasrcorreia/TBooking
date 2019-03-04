@@ -34,6 +34,7 @@ public class CreateAccountActivity extends AppCompatActivity {
     User user;
 
     public void init(){
+
         database = FirebaseDatabase.getInstance();
         users = database.getReference("Users");
 
@@ -84,7 +85,7 @@ public class CreateAccountActivity extends AppCompatActivity {
                         else{
 
                             SaveSharedPreference.setLoggedIn(getApplicationContext(), true, user.getEmail().replace(",","."));
-                            createAccount(user.getEmail(),user.getPassword());
+                            createUserAccount(user.getEmail(),user.getPassword());
                             Intent intent = new Intent(CreateAccountActivity.this, NavigationActivity.class);
                             startActivity(intent);
 
@@ -92,16 +93,12 @@ public class CreateAccountActivity extends AppCompatActivity {
                     }
                     @Override
                     public void onCancelled(@NonNull DatabaseError databaseError) {
-
                     }
                 });
             }
         });
-
     }
-
-    private void createAccount(String email, String password){
-
+    private void createUserAccount(String email, String password){
         mAuth.createUserWithEmailAndPassword(edtMail.getText().toString(), edtPassword.getText().toString())
                 .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
@@ -110,7 +107,6 @@ public class CreateAccountActivity extends AppCompatActivity {
                     }
                 });
     }
-
     private boolean validateForm() {
         boolean valid = true;
 

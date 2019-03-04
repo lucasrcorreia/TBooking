@@ -27,7 +27,7 @@
         android:src="@mipmap/ic_launcher_foreground" />
 
     <EditText
-        android:id="@+id/username"
+        android:id="@+id/edtRestEmail"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="48dp"
@@ -43,7 +43,7 @@
         app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
     <EditText
-        android:id="@+id/rest_name"
+        android:id="@+id/edtRestName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="48dp"
@@ -56,11 +56,11 @@
         android:textColor="@color/colorTextWhite"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/username" />
+        app:layout_constraintTop_toBottomOf="@+id/edtRestEmail" />
 
 
     <EditText
-        android:id="@+id/password"
+        android:id="@+id/edtRestPassword"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="48dp"
@@ -73,10 +73,10 @@
         android:textColorHint="@color/colorTextWhite"
         android:textColor="@color/colorTextWhite"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/rest_name" />
+        app:layout_constraintTop_toBottomOf="@+id/edtRestName" />
 
         <EditText
-            android:id="@+id/restDescription"
+            android:id="@+id/edtrestDescription"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="48dp"
@@ -89,7 +89,7 @@
             android:textColorHint="@color/colorTextWhite"
             android:textColor="@color/colorTextWhite"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/password" />
+            app:layout_constraintTop_toBottomOf="@+id/edtRestPassword" />
 
         <Button
             android:id="@+id/restPicture"
@@ -98,7 +98,6 @@
             android:layout_marginStart="48dp"
             android:layout_marginTop="24dp"
             android:layout_marginEnd="48dp"
-            android:onClick="btsignup"
             android:background="@color/colorTextBlack"
             android:text="@string/upload_picture"
             android:textColor="@color/colorTextWhite"
@@ -113,7 +112,6 @@
             android:layout_marginStart="48dp"
             android:layout_marginTop="24dp"
             android:layout_marginEnd="48dp"
-            android:onClick="btsignup"
             android:background="@color/colorTextBlack"
             android:text="@string/upload_menu"
             android:textColor="@color/colorTextWhite"
@@ -122,13 +120,12 @@
             app:layout_constraintTop_toBottomOf="@+id/imgRestMenu" />
 
     <Button
-        android:id="@+id/signup"
+        android:id="@+id/btnCreateAccount"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="48dp"
         android:layout_marginTop="24dp"
         android:layout_marginEnd="48dp"
-        android:onClick="btsignup"
         android:background="@color/colorTextBlack"
         android:text="@string/create_account"
         android:textColor="@color/colorTextWhite"
@@ -148,7 +145,7 @@
         android:textColor="@color/colorTextWhite"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/signup" />
+        app:layout_constraintTop_toBottomOf="@+id/btnCreateAccount" />
 
     <Button
         android:id="@+id/google_signup"
@@ -173,7 +170,7 @@
             android:layout_marginEnd="48dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/restDescription"
+            app:layout_constraintTop_toBottomOf="@+id/edtrestDescription"
             android:src="@drawable/ic_person_white_24dp" />
 
         <ImageView

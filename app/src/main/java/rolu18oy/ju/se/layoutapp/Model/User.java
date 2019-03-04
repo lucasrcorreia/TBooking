@@ -10,7 +10,6 @@ public class User {
     private  String LastName;
     Uri photoURL;
 
-
     public Uri getPhotoURL() {
         return photoURL;
     }
