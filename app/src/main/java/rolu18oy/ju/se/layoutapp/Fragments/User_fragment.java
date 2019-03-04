@@ -114,7 +114,7 @@ public class User_fragment extends Fragment {
     }
     public void RefreshNavigationActivity(){
         SaveSharedPreference.setLoggedIn(getContext(), false, "");
-        Intent intent = new Intent(getActivity(), NavigationActivity.class);
+        Intent intent = new Intent(getActivity(), LoginActivity.class);
         startActivity(intent);
     }
 

@@ -43,7 +43,7 @@
         app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
     <EditText
-        android:id="@+id/first_name"
+        android:id="@+id/rest_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="48dp"
@@ -51,28 +51,13 @@
         android:layout_marginEnd="48dp"
         android:ems="10"
         android:inputType="textPersonName"
-        android:hint="@string/first_name"
+        android:hint="@string/restaurant"
         android:textColorHint="@color/colorTextWhite"
         android:textColor="@color/colorTextWhite"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/username" />
 
-    <EditText
-        android:id="@+id/last_name"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="48dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="48dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:hint="@string/last_name"
-        android:textColorHint="@color/colorTextWhite"
-        android:textColor="@color/colorTextWhite"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/first_name" />
 
     <EditText
         android:id="@+id/password"
@@ -88,7 +73,53 @@
         android:textColorHint="@color/colorTextWhite"
         android:textColor="@color/colorTextWhite"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/last_name" />
+        app:layout_constraintTop_toBottomOf="@+id/rest_name" />
+
+        <EditText
+            android:id="@+id/restDescription"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="48dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="48dp"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:hint="@string/description"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:textColorHint="@color/colorTextWhite"
+            android:textColor="@color/colorTextWhite"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/password" />
+
+        <Button
+            android:id="@+id/restPicture"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="48dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="48dp"
+            android:onClick="btsignup"
+            android:background="@color/colorTextBlack"
+            android:text="@string/upload_picture"
+            android:textColor="@color/colorTextWhite"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imgRestPicture" />
+
+        <Button
+            android:id="@+id/restMenu"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="48dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="48dp"
+            android:onClick="btsignup"
+            android:background="@color/colorTextBlack"
+            android:text="@string/upload_menu"
+            android:textColor="@color/colorTextWhite"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imgRestMenu" />
 
     <Button
         android:id="@+id/signup"
@@ -103,7 +134,7 @@
         android:textColor="@color/colorTextWhite"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/password" />
+        app:layout_constraintTop_toBottomOf="@+id/restMenu" />
 
     <Button
         android:id="@+id/fb_signup"
@@ -133,18 +164,29 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/fb_signup" />
 
-        <TextView
-            android:id="@+id/createRest"
-            android:layout_width="wrap_content"
-            android:layout_height="40dp"
+        <ImageView
+            android:id="@+id/imgRestPicture"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
             android:layout_marginStart="48dp"
-            android:layout_marginLeft="48dp"
-            android:layout_marginTop="16dp"
-            android:onClick="startCreateRestAct"
-            android:text="@string/create_a_restaurant"
-            android:textColor="@color/colorTextWhite"
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="48dp"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/google_signup" />
+            app:layout_constraintTop_toBottomOf="@+id/restDescription"
+            android:src="@drawable/ic_person_white_24dp" />
+
+        <ImageView
+            android:id="@+id/imgRestMenu"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_marginStart="48dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="48dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/restPicture"
+            android:src="@drawable/ic_person_white_24dp" />
 
     </android.support.constraint.ConstraintLayout>
 </ScrollView>

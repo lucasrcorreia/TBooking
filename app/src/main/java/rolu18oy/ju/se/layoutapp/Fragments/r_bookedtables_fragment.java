@@ -10,10 +10,10 @@ import android.view.ViewGroup;
 import rolu18oy.ju.se.layoutapp.R;
 
 
-public class R_freetables_fragment extends Fragment {
+public class r_bookedtables_fragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.R_freetables_fragment, null);
+        return inflater.inflate(R.layout.r_bookedtables_fragment, null);
     }
 }

@@ -47,6 +47,12 @@ public class CreateAccountActivity extends AppCompatActivity {
         btnCreateAccount = (Button) findViewById(R.id.signup);
     }
 
+    public void startCreateRestAct (View view){
+        Intent intent = new Intent(this, r_CreateAccountActivity.class);
+        startActivity(intent);
+
+    }
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

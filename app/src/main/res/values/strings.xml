@@ -25,4 +25,9 @@
     <string name="sign_in">Sign In</string>
     <string name="info">Info</string>
     <string name="free">Free</string>
+    <string name="restaurant">Restaurant</string>
+    <string name="description">Description</string>
+    <string name="upload_picture">Upload Picture</string>
+    <string name="upload_menu">Upload menu</string>
+    <string name="create_a_restaurant">Create a Restaurant</string>
 </resources>
