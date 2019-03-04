@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/navigation_freetables"
+        android:icon="@drawable/ic_event_available_white_24dp"
+        android:title="@string/free" />
+
+    <item
+        android:id="@+id/navigation_bookedtables"
+        android:icon="@drawable/ic_date_range_white_24dp"
+        android:title="@string/booked" />
+
+    <item
+        android:id="@+id/navigation_restaurantinfo"
+        android:icon="@drawable/ic_person_white_24dp"
+        android:title="@string/info" />
+
+</menu>

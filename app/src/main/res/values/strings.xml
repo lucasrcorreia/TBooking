@@ -23,4 +23,6 @@
     <string name="booked">Booked</string>
     <string name="user">User</string>
     <string name="sign_in">Sign In</string>
+    <string name="info">Info</string>
+    <string name="free">Free</string>
 </resources>
