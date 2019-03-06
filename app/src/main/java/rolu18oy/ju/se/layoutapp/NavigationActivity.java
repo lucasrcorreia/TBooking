@@ -25,7 +25,7 @@ public class NavigationActivity extends AppCompatActivity implements BottomNavig
         super.onCreate(savedInstanceState);
         setContentView(R.layout.navigation_activity);
 
-        SaveSharedPreference.setLoggedIn(getApplicationContext(), false, "no");
+        //SaveSharedPreference.setLoggedIn(getApplicationContext(), false, "no");
         //loading the default fragment
         loadFragment(new Restaurants_fragment());
 
@@ -74,7 +74,7 @@ public class NavigationActivity extends AppCompatActivity implements BottomNavig
     }
 
     public void LogOutstartLoginAct (View view){
-        Intent intent = new Intent(this, LoginActivity.class);
+        Intent intent = new Intent(this, LoginNavActivity.class);
         startActivity(intent);
 
     }

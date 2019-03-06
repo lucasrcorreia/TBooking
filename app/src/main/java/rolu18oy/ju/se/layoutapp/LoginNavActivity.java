@@ -31,34 +31,29 @@ public class LoginNavActivity extends AppCompatActivity implements BottomNavigat
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login_nav_activity);
 
         loadFragment(new login_nav_user_fragment());
 
         //getting bottom navigation view and attaching the listener
+
         BottomNavigationView navigation = findViewById(R.id.navigation_login);
         navigation.setOnNavigationItemSelectedListener(this);
-
-
     }
 
     public void startCreateAccAct (View view){
         Intent intent = new Intent(this, CreateAccountActivity.class);
         startActivity(intent);
-
     }
-
     public void startForgotPassAct (View view){
         Intent intent = new Intent(this, ForgotPasswordActivity.class);
         startActivity(intent);
-
     }
-
     public void r_startCreateAccAct (View view){
         Intent intent = new Intent(this, r_CreateAccountActivity.class);
         startActivity(intent);
-
     }
 
 
@@ -74,9 +69,7 @@ public class LoginNavActivity extends AppCompatActivity implements BottomNavigat
             case R.id.navigation_restaurantslogin:
                 fragment = new login_nav_restaurant_fragment();
                 break;
-
         }
-
         return loadFragment(fragment);
     }
 
@@ -91,5 +84,4 @@ public class LoginNavActivity extends AppCompatActivity implements BottomNavigat
         }
         return false;
     }
-
 }
