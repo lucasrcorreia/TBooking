@@ -2,7 +2,7 @@
     <string name="create_a_new_account">Create a new account</string>
     <string name="sign_up">Sign Up</string>
     <string name="username">E-mail</string>
-    <string name="forgot_password">Forgot Password</string>
+    <string name="forgot_password">Forgot password</string>
     <string name="create_account">Create Account</string>
     <string name="sign_in_with_google">Sign in with Google</string>
     <string name="sign_in_with_facebook">Sign in with Facebook</string>
@@ -30,4 +30,6 @@
     <string name="upload_picture">Upload Picture</string>
     <string name="upload_menu">Upload menu</string>
     <string name="create_a_restaurant">Create a Restaurant</string>
+    <string name="create_a_new_restaurant">Create a new restaurant</string>
+    <string name="create_an_account">Create an account</string>
 </resources>

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="rolu18oy.ju.se.layoutapp">
 
     <application
@@ -8,10 +9,8 @@
         android:label="Test"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
-        <activity
-            android:name=".ForgotPasswordActivity"
-            android:screenOrientation="portrait"></activity>
+        android:theme="@style/AppTheme"
+        tools:ignore="GoogleAppIndexingWarning">
         <activity
             android:name=".NavigationActivity"
             android:screenOrientation="portrait">
@@ -22,10 +21,16 @@
             </intent-filter>
         </activity>
         <activity
+            android:name=".ForgotPasswordActivity"
+            android:screenOrientation="portrait"/>
+        <activity
             android:name=".CreateAccountActivity"
             android:screenOrientation="portrait"/>
         <activity
             android:name=".LoginActivity"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".LoginNavActivity"
             android:screenOrientation="portrait"/>
         <activity
             android:name=".r_NavigationActivity"

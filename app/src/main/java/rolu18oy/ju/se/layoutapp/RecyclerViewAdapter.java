@@ -27,10 +27,10 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         if (viewType == VIEW_TYPE_ITEM) {
-            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_row, parent, false);
+            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.rv_item_row, parent, false);
             return new ItemViewHolder(view);
         } else {
-            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_loading, parent, false);
+            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.rv_item_loading, parent, false);
             return new LoadingViewHolder(view);
         }
     }

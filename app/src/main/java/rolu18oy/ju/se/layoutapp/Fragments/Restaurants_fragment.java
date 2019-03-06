@@ -22,7 +22,7 @@ public class Restaurants_fragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.testfragmentrestaurant, null);
+        view = inflater.inflate(R.layout.restaurants_fragment, null);
         recyclerView = view.findViewById(R.id.recyclerView);
         populateData();
         initAdapter();

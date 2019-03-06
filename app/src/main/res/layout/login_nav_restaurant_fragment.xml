@@ -13,34 +13,21 @@
         android:layout_height="match_parent"
         android:background="@color/colorMain">
 
-        <ImageView
-            android:id="@+id/imageView"
-            android:layout_width="211dp"
-            android:layout_height="192dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="32dp"
-            android:layout_marginEnd="8dp"
-            android:contentDescription="Hey"
-            android:src="@mipmap/ic_launcher_foreground"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
         <EditText
             android:id="@+id/username"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="48dp"
-            android:layout_marginTop="40dp"
+            android:layout_marginTop="8dp"
             android:layout_marginEnd="48dp"
             android:ems="10"
-            android:inputType="textPersonName"
             android:hint="@string/username"
-            android:textColorHint="@color/colorTextWhite"
+            android:inputType="textPersonName"
             android:textColor="@color/colorTextWhite"
+            android:textColorHint="@color/colorTextWhite"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageView" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <EditText
             android:id="@+id/password"
@@ -72,34 +59,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/password" />
 
-        <Button
-            android:id="@+id/fb_login"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="48dp"
-            android:layout_marginTop="32dp"
-            android:layout_marginEnd="48dp"
-            android:background="@color/colorFacebook"
-            android:text="@string/sign_in_with_facebook"
-            android:textColor="@color/colorTextWhite"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/login" />
-
-        <Button
-            android:id="@+id/google_login"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="48dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="48dp"
-            android:background="@color/colorGoogle"
-            android:text="@string/sign_in_with_google"
-            android:textColor="@color/colorTextBlack"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/fb_login" />
-
         <TextView
             android:id="@+id/create_account"
             android:layout_width="wrap_content"
@@ -107,11 +66,11 @@
             android:layout_marginStart="48dp"
             android:layout_marginLeft="48dp"
             android:layout_marginTop="32dp"
-            android:onClick="startCreateAccAct"
-            android:text="@string/create_account"
+            android:onClick="r_startCreateAccAct"
+            android:text="@string/create_a_new_restaurant"
             android:textColor="@color/colorTextWhite"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/google_login" />
+            app:layout_constraintTop_toBottomOf="@+id/login" />
 
         <TextView
             android:id="@+id/forgot_password"

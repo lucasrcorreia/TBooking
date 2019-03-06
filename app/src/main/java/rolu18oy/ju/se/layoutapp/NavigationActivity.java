@@ -68,7 +68,7 @@ public class NavigationActivity extends AppCompatActivity implements BottomNavig
         return false;
     }
     public void startLoginAct (View view){
-        Intent intent = new Intent(this, LoginActivity.class);
+        Intent intent = new Intent(this, LoginNavActivity.class);
         startActivity(intent);
 
     }

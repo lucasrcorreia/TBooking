@@ -127,7 +127,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/restPicture"
-            android:src="@drawable/ic_person_white_24dp" />
+            android:src="@drawable/ic_restaurant_menu_white_24dp" />
 
         <Button
             android:id="@+id/restMenu"
@@ -149,7 +149,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:layout_constraintTop_toBottomOf="@+id/btnCreateAccount"
-            android:layout_marginBottom="16dp" />
+            android:layout_marginBottom="16dp"
+            android:elevation="0dp"/>
 
 
     <Button
@@ -165,34 +166,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/restMenu" />
-
-    <Button
-        android:id="@+id/fb_signup"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="48dp"
-        android:layout_marginTop="32dp"
-        android:layout_marginEnd="48dp"
-        android:background="@color/colorFacebook"
-        android:text="@string/sign_up_with_facebook"
-        android:textColor="@color/colorTextWhite"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/progress_bar" />
-
-    <Button
-        android:id="@+id/google_signup"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="48dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="48dp"
-        android:background="@color/colorGoogle"
-        android:text="@string/sign_up_with_google"
-        android:textColor="@color/colorTextBlack"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/fb_signup" />
 
     </android.support.constraint.ConstraintLayout>
 </ScrollView>

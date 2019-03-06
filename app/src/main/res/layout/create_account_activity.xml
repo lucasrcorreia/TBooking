@@ -133,18 +133,5 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/fb_signup" />
 
-        <TextView
-            android:id="@+id/createRest"
-            android:layout_width="wrap_content"
-            android:layout_height="40dp"
-            android:layout_marginStart="48dp"
-            android:layout_marginLeft="48dp"
-            android:layout_marginTop="16dp"
-            android:onClick="startCreateRestAct"
-            android:text="@string/create_a_restaurant"
-            android:textColor="@color/colorTextWhite"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/google_signup" />
-
     </android.support.constraint.ConstraintLayout>
 </ScrollView>
