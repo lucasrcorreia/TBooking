@@ -29,6 +29,7 @@ import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.StorageTask;
 import com.google.firebase.storage.UploadTask;
+import com.squareup.picasso.Picasso;
 
 import rolu18oy.ju.se.layoutapp.Model.Restaurant;
 import rolu18oy.ju.se.layoutapp.Model.Upload;
@@ -37,7 +38,7 @@ public class r_CreateAccountActivity extends AppCompatActivity{
 
 
     private static final int PICK_IMAGE_REQUEST_PROFILE = 1;
-    private static final int PICK_IMAGE_REQUEST_MENU = 1;
+    private static final int PICK_IMAGE_REQUEST_MENU = 2;
 
     Restaurant restaurant;
 
@@ -53,6 +54,8 @@ public class r_CreateAccountActivity extends AppCompatActivity{
     private EditText edtRestName;
     private EditText edtRestPassword;
     private EditText edtrestDescription;
+    //private String RestProfilePicture;
+    //private String RestMenuPicture;
 
     private ProgressBar mProgressBar;
 
@@ -67,7 +70,8 @@ public class r_CreateAccountActivity extends AppCompatActivity{
 
 
 
-
+    String ImageProgileUri;
+    String ImageMenuUri;
 
     public void init(){
 
@@ -126,13 +130,14 @@ public class r_CreateAccountActivity extends AppCompatActivity{
                     if(!validateForm()){
                         return;
                     }
+
+                    uploadFile(mImageUriProfile, "ProfilePic");
+                    uploadFile(mImageUriMenu, "MenuPic");
+
                     restaurant = new Restaurant(edtRestEmail.getText().toString().replace(".",","),
                             edtRestName.getText().toString(),
                             edtRestPassword.getText().toString(),
                             edtrestDescription.getText().toString());
-
-                    uploadFile(mImageUriProfile);
-                    uploadFile(mImageUriMenu);
 
                     SaveSharedPreference.setLoggedIn(getApplicationContext(), true, restaurant.getPassword().replace(",","."));
                     createRestAccount();
@@ -156,8 +161,9 @@ public class r_CreateAccountActivity extends AppCompatActivity{
         MimeTypeMap mime = MimeTypeMap.getSingleton();
         return mime.getExtensionFromMimeType(cR.getType(uri));
     }
+    //String ImageUrl = "";
 
-    private void uploadFile(Uri mImageUri){
+    private void uploadFile(Uri mImageUri, final String ImageName){
 
         if (mImageUri != null) {
             StorageReference fileReference = mStorageRef.child(System.currentTimeMillis()
@@ -174,9 +180,25 @@ public class r_CreateAccountActivity extends AppCompatActivity{
                             mProgressBar.setProgress(0);
                         }
                     }, 500);
+
+                    if(ImageName == "ProfilePic"){
+                        //ImageProgileUri = ;
+                        restaurant.setRestaurantProfile(taskSnapshot.getStorage().getDownloadUrl().toString());
+                    }
+                    if(ImageName == "MenuPic"){
+                        restaurant.setRestaurantMenu(taskSnapshot.getStorage().getDownloadUrl().toString());
+                        //ImageMenuUri = taskSnapshot.getStorage().getDownloadUrl().toString();
+                    }
+
                     Upload upload = new Upload(restaurant.getRestaurantName().trim(), taskSnapshot.getStorage().getDownloadUrl().toString());
                     String uploadId = mDatabaseRef.push().getKey();
                     mDatabaseRef.child(uploadId).setValue(upload);
+
+                    //ImageUrl = taskSnapshot.getStorage().getDownloadUrl().toString();
+
+                    //String ImageProgileUri;
+                    //String ImageMenuUri;
+
 
                 }
             }).addOnFailureListener(new OnFailureListener() {
@@ -195,7 +217,7 @@ public class r_CreateAccountActivity extends AppCompatActivity{
         else{
             Toast.makeText(this, "No file selected", Toast.LENGTH_SHORT).show();
         }
-
+        //return ImageUrl;
     }
 
 
@@ -228,10 +250,10 @@ public class r_CreateAccountActivity extends AppCompatActivity{
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if(resultCode == RESULT_OK && data != null && data.getData() != null){
+
             if(requestCode == PICK_IMAGE_REQUEST_PROFILE){
                 mImageUriProfile = data.getData();
                 viewImgRestProfile.setImageURI(mImageUriProfile);
-
                 //Picasso.with(this).load(mImageUriProfile).into(viewImgRestProfile);
             }
 

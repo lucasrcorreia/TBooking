@@ -11,9 +11,16 @@ import rolu18oy.ju.se.layoutapp.R;
 
 
 public class r_freetables_fragment extends Fragment {
+    View view;
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.r_freetables_fragment, null);
+        view = inflater.inflate(R.layout.r_freetables_fragment, null);
+
+
+
+
+
+        return view;
     }
 }

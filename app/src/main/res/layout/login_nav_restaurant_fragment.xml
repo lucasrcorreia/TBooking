@@ -14,7 +14,7 @@
         android:background="@color/colorMain">
 
         <EditText
-            android:id="@+id/username"
+            android:id="@+id/restEmail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="48dp"
@@ -30,7 +30,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <EditText
-            android:id="@+id/password"
+            android:id="@+id/restPassword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="48dp"
@@ -43,10 +43,10 @@
             android:textColor="@color/colorTextWhite"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/username" />
+            app:layout_constraintTop_toBottomOf="@+id/restEmail" />
 
         <Button
-            android:id="@+id/login"
+            android:id="@+id/restLogin"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="48dp"
@@ -57,7 +57,7 @@
             android:textColor="@color/colorTextWhite"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/password" />
+            app:layout_constraintTop_toBottomOf="@+id/restPassword" />
 
         <TextView
             android:id="@+id/create_account"
@@ -70,7 +70,7 @@
             android:text="@string/create_a_new_restaurant"
             android:textColor="@color/colorTextWhite"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/login" />
+            app:layout_constraintTop_toBottomOf="@+id/restLogin" />
 
         <TextView
             android:id="@+id/forgot_password"

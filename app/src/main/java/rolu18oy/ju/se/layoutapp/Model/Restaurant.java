@@ -5,6 +5,18 @@ public class Restaurant {
     private  String RestaurantName;
     private  String Password;
     private  String Description;
+    private String RestaurantProfile;
+    private String RestaurantMenu;
+
+    public String getRestaurantMenu() {
+        return RestaurantMenu;
+    }
+
+    public void setRestaurantMenu(String restaurantMenu) {
+        RestaurantMenu = restaurantMenu;
+    }
+
+
 
     public Restaurant(){
 
@@ -16,6 +28,14 @@ public class Restaurant {
 
     public void setPassword(String password) {
         Password = password;
+    }
+
+    public String getRestaurantProfile() {
+        return RestaurantProfile;
+    }
+
+    public void setRestaurantProfile(String restaurantProfile) {
+        RestaurantProfile = restaurantProfile;
     }
 
     public Restaurant(String restaurantEmail, String restaurantName, String password, String description){
