@@ -32,6 +32,9 @@
             android:name=".LoginNavActivity"
             android:screenOrientation="portrait"/>
         <activity
+            android:name=".CreateAccNavActivity"
+            android:screenOrientation="portrait"/>
+        <activity
             android:name=".r_NavigationActivity"
             android:screenOrientation="portrait"/>
         <activity

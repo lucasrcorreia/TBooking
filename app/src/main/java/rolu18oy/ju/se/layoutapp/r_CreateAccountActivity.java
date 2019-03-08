@@ -29,7 +29,6 @@ import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.StorageTask;
 import com.google.firebase.storage.UploadTask;
-import com.squareup.picasso.Picasso;
 
 import rolu18oy.ju.se.layoutapp.Model.Restaurant;
 import rolu18oy.ju.se.layoutapp.Model.Upload;
@@ -105,7 +104,7 @@ public class r_CreateAccountActivity extends AppCompatActivity{
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.r_create_account_activity);
+        setContentView(R.layout.createacc_nav_restaurant_fragment);
 
         init();
 

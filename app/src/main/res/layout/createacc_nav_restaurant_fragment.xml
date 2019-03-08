@@ -13,34 +13,21 @@
         android:layout_height="match_parent"
         android:background="@color/colorMain">
 
-    <ImageView
-        android:id="@+id/imageView"
-        android:contentDescription="Hey"
-        android:layout_width="211dp"
-        android:layout_height="192dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="32dp"
-        android:layout_marginEnd="8dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:src="@mipmap/ic_launcher_foreground" />
-
-    <EditText
-        android:id="@+id/edtRestEmail"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="48dp"
-        android:layout_marginTop="30dp"
-        android:layout_marginEnd="48dp"
-        android:ems="10"
-        android:inputType="textEmailAddress"
-        android:hint="@string/username"
-        android:textColorHint="@color/colorTextWhite"
-        android:textColor="@color/colorTextWhite"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+        <EditText
+            android:id="@+id/edtRestEmail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="48dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="48dp"
+            android:ems="10"
+            android:hint="@string/username"
+            android:inputType="textEmailAddress"
+            android:textColor="@color/colorTextWhite"
+            android:textColorHint="@color/colorTextWhite"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
         android:id="@+id/edtRestName"
@@ -148,10 +135,24 @@
             style="@style/Widget.AppCompat.ProgressBar.Horizontal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@+id/btnCreateAccount"
+            android:visibility="gone"
+            app:layout_constraintTop_toBottomOf="@+id/textView5"
             android:layout_marginBottom="16dp"
             android:elevation="0dp"/>
 
+
+        <TextView
+            android:id="@+id/textView5"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:layout_marginStart="48dp"
+            android:layout_marginLeft="48dp"
+            android:layout_marginTop="32dp"
+            android:onClick="startLoginActivity"
+            android:text="@string/already_have_an_account_sign_in"
+            android:textColor="@color/colorTextWhite"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btnCreateAccount" />
 
     <Button
         android:id="@+id/btnCreateAccount"
