@@ -1,5 +1,6 @@
 package rolu18oy.ju.se.layoutapp;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -29,7 +30,9 @@ public class CreateAccNavActivity extends AppCompatActivity implements BottomNav
 
         BottomNavigationView navigation = findViewById(R.id.navigation_login);
         navigation.setOnNavigationItemSelectedListener(this);
+
     }
+
 
     public void startCreateAccAct (View view){
         Intent intent = new Intent(this, CreateAccountActivity.class);
