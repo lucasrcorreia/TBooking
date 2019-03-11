@@ -26,9 +26,6 @@
             android:name=".ForgotPasswordActivity"
             android:screenOrientation="portrait"/>
         <activity
-            android:name=".CreateAccountActivity"
-            android:screenOrientation="portrait"/>
-        <activity
             android:name=".LoginNavActivity"
             android:screenOrientation="portrait"/>
         <activity

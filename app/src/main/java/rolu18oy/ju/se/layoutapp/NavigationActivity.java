@@ -15,6 +15,7 @@ import rolu18oy.ju.se.layoutapp.Fragments.User_fragment;
 
 public class NavigationActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener {
 
+    public String restaurant_selected;
     String email;
     SharedPreferences sp;
     String Login;

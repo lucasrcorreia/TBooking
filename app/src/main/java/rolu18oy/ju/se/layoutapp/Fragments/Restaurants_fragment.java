@@ -22,6 +22,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import rolu18oy.ju.se.layoutapp.Model.Restaurant;
+import rolu18oy.ju.se.layoutapp.NavigationActivity;
 import rolu18oy.ju.se.layoutapp.R;
 import rolu18oy.ju.se.layoutapp.Model.RestaurantAdapter;
 
@@ -70,6 +71,26 @@ public class Restaurants_fragment extends Fragment {
                 mProgressCircle.setVisibility(View.INVISIBLE);
             }
         });
+
+        mRecyclerView.addOnItemTouchListener(
+                new RestaurantAdapter.RecyclerItemClickListener(getContext(), mRecyclerView ,new RestaurantAdapter.RecyclerItemClickListener.OnItemClickListener() {
+                    @Override public void onItemClick(View view, int position) {
+                        // do whatever
+                        getFragmentManager()
+                                .beginTransaction()
+                                .replace(R.id.fragment_container, new Rest_description_fragment())
+                                .commit();
+                    }
+
+                    @Override public void onLongItemClick(View view, int position) {
+                        // do whatever
+                        getFragmentManager()
+                                .beginTransaction()
+                                .replace(R.id.fragment_container, new Rest_description_fragment())
+                                .commit();
+                    }
+                })
+        );
 
         return view;
     }

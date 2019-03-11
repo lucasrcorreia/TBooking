@@ -34,10 +34,6 @@ public class CreateAccNavActivity extends AppCompatActivity implements BottomNav
     }
 
 
-    public void startCreateAccAct (View view){
-        Intent intent = new Intent(this, CreateAccountActivity.class);
-        startActivity(intent);
-    }
     public void startForgotPassAct (View view){
         Intent intent = new Intent(this, ForgotPasswordActivity.class);
         startActivity(intent);
