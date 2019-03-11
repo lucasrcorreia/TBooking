@@ -38,7 +38,7 @@ public class RestaurantActivity extends AppCompatActivity {
 
         setContentView(rolu18oy.ju.se.layoutapp.R.layout.activity_restaurant);
 
-        mRecyclerView  = (RecyclerView) findViewById(rolu18oy.ju.se.layoutapp.R.id.recyclerView);
+        mRecyclerView  = (RecyclerView) findViewById(rolu18oy.ju.se.layoutapp.R.id.recycler_view);
         mRecyclerView.setHasFixedSize(true);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
 
@@ -68,5 +68,6 @@ public class RestaurantActivity extends AppCompatActivity {
                 mProgressCircle.setVisibility(View.INVISIBLE);
             }
         });
+
     }
 }

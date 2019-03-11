@@ -29,8 +29,8 @@ public class RestaurantAdapter extends RecyclerView.Adapter<RestaurantAdapter.Re
     @NonNull
     @Override
     public RestaurantViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-        View v = LayoutInflater.from(mContext).inflate(R.layout.restaurant_item,viewGroup );
-        //View v = LayoutInflater.from(mContext).inflate(R.layout.restaurant_item, false);
+        /*view v = LayoutInflater.from(mContext).inflate(R.layout.restaurant_item,viewGroup );*/
+        View v = LayoutInflater.from(mContext).inflate(R.layout.restaurant_item, viewGroup,false);
 
         return new RestaurantViewHolder(v);
     }
@@ -40,7 +40,9 @@ public class RestaurantAdapter extends RecyclerView.Adapter<RestaurantAdapter.Re
         Upload uploadCurrent = muploads.get(position);
         restaurantViewHolder.restViewName.setText(uploadCurrent.getName());
         Picasso.get().load(uploadCurrent.getImageUrl())
-                .centerInside()
+                //.centerInside()
+                .fit()
+                .centerCrop()
                 .into(restaurantViewHolder.restImageView);
     }
 
@@ -49,6 +51,7 @@ public class RestaurantAdapter extends RecyclerView.Adapter<RestaurantAdapter.Re
 
         return muploads.size();
     }
+
 
     public class RestaurantViewHolder extends RecyclerView.ViewHolder{
 
@@ -60,7 +63,6 @@ public class RestaurantAdapter extends RecyclerView.Adapter<RestaurantAdapter.Re
             super(itemView);
 
             restViewName = itemView.findViewById(R.id.text_view_name);
-            //restviewDescription = itemView.findViewById(R.id.Rest_view_Description);
             restImageView = itemView.findViewById(R.id.image_view_upload);
 
         }
