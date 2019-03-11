@@ -68,6 +68,7 @@ public class createacc_nav_user_fragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
         view = inflater.inflate(R.layout.createacc_nav_user_fragment, null);
+
         init();
 
 
