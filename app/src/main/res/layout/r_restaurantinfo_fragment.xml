@@ -8,7 +8,7 @@
     android:background="@color/colorTextWhite">
 
     <TextView
-        android:id="@+id/Restaurant"
+        android:id="@+id/RestName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -19,7 +19,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/Description"
+        android:id="@+id/RestDescription"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -27,10 +27,10 @@
         android:layout_marginTop="10dp"
         android:textSize="20dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Restaurant" />
+        app:layout_constraintTop_toBottomOf="@+id/RestName" />
 
     <TextView
-        android:id="@+id/Menu"
+        android:id="@+id/RestEmail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -38,10 +38,24 @@
         android:layout_marginTop="10dp"
         android:textSize="20dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Description" />
+        app:layout_constraintTop_toBottomOf="@+id/RestDescription" />
 
     <Button
-        android:id="@+id/logout"
+        android:id="@+id/btsignin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:text="@string/sign_in"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/RestEmail" />
+
+    <Button
+        android:id="@+id/btlogout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -52,10 +66,10 @@
         android:text="@string/logout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Menu" />
+        app:layout_constraintTop_toBottomOf="@+id/btsignin" />
 
     <Button
-        android:id="@+id/delete_acc"
+        android:id="@+id/btdelete_acc"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -66,7 +80,7 @@
         android:text="@string/delete_account"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/logout" />
+        app:layout_constraintTop_toBottomOf="@+id/btlogout" />
 
     <Button
         android:id="@+id/btnChangePass"
@@ -80,24 +94,10 @@
         android:text="@string/change_password"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/delete_acc" />
+        app:layout_constraintTop_toBottomOf="@+id/btdelete_acc" />
 
     <Button
-        android:id="@+id/signin"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
-        android:text="@string/sign_in"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnChangePass" />
-
-    <Button
-        android:id="@+id/Change_menu"
+        android:id="@+id/ChangeRestmenu"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -108,10 +108,10 @@
         android:text="change menu"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/signin" />
+        app:layout_constraintTop_toBottomOf="@+id/btnChangePass" />
 
     <Button
-        android:id="@+id/Change_desc"
+        android:id="@+id/ChangeRestdesc"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -122,10 +122,10 @@
         android:text="change desc"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Change_menu" />
+        app:layout_constraintTop_toBottomOf="@+id/ChangeRestmenu" />
 
     <Button
-        android:id="@+id/Change_name"
+        android:id="@+id/ChangeRestname"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -136,6 +136,6 @@
         android:text="change name"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Change_desc" />
+        app:layout_constraintTop_toBottomOf="@+id/ChangeRestdesc" />
 
 </android.support.constraint.ConstraintLayout>
