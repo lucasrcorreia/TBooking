@@ -39,6 +39,7 @@ public class LoginNavActivity extends AppCompatActivity implements BottomNavigat
 
         BottomNavigationView navigation = findViewById(R.id.navigation_login);
         navigation.setOnNavigationItemSelectedListener(this);
+
     }
 
     public void startCreateAccAct (View view){
