@@ -22,7 +22,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import rolu18oy.ju.se.layoutapp.Model.Restaurant;
-import rolu18oy.ju.se.layoutapp.NavigationActivity;
 import rolu18oy.ju.se.layoutapp.R;
 import rolu18oy.ju.se.layoutapp.Model.RestaurantAdapter;
 
@@ -35,6 +34,7 @@ public class Restaurants_fragment extends Fragment {
 
     private DatabaseReference mDatabaseRef;
     private List<Restaurant> mRestaurants;
+
 
     @Nullable
     @Override
@@ -80,6 +80,14 @@ public class Restaurants_fragment extends Fragment {
                                 .beginTransaction()
                                 .replace(R.id.fragment_container, new Rest_description_fragment())
                                 .commit();
+
+                        Fragment passData  = new Fragment();
+                        final Bundle bundle= new Bundle();
+                        bundle.putString("RestoName:",mRestaurants.get(position).getRestaurantName());
+                        bundle.putString("RestoDiscription:",mRestaurants.get(position).getDescription());
+                        passData.setArguments(bundle);
+                        passData.setArguments(getArguments());
+                        getFragmentManager().beginTransaction().replace(R.id.Rest_description_fragment, passData).commit();
                     }
 
                     @Override public void onLongItemClick(View view, int position) {
