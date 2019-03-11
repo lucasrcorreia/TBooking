@@ -1,4 +1,4 @@
-package rolu18oy.ju.se.layoutapp.TestHomePage;
+package rolu18oy.ju.se.layoutapp.Model;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
@@ -6,25 +6,20 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.ViewParent;
-import android.widget.ImageView;
 import android.widget.TextView;
-
-import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
-import rolu18oy.ju.se.layoutapp.Model.Upload;
 import rolu18oy.ju.se.layoutapp.R;
 
 public class RestaurantAdapter extends RecyclerView.Adapter<RestaurantAdapter.RestaurantViewHolder> {
 
     private Context mContext;
-    private List<Upload> muploads;
+    private List<Restaurant> mRestaurants;
 
-    public RestaurantAdapter(Context context , List<Upload> uploads){
+    public RestaurantAdapter(Context context , List<Restaurant> restaurants){
         mContext = context;
-        muploads = uploads;
+        mRestaurants = restaurants;
     }
     @NonNull
     @Override
@@ -37,19 +32,20 @@ public class RestaurantAdapter extends RecyclerView.Adapter<RestaurantAdapter.Re
 
     @Override
     public void onBindViewHolder(@NonNull RestaurantViewHolder restaurantViewHolder, int position) {
-        Upload uploadCurrent = muploads.get(position);
-        restaurantViewHolder.restViewName.setText(uploadCurrent.getName());
-        Picasso.get().load(uploadCurrent.getImageUrl())
+        Restaurant uploadCurrent = mRestaurants.get(position);
+        restaurantViewHolder.restViewName.setText(uploadCurrent.getRestaurantName());
+        restaurantViewHolder.restViewDescription.setText(uploadCurrent.getDescription());
+        /*Picasso.get().load(uploadCurrent.getImageUrl())
                 //.centerInside()
                 .fit()
                 .centerCrop()
-                .into(restaurantViewHolder.restImageView);
+                .into(restaurantViewHolder.restImageView);*/
     }
 
     @Override
     public int getItemCount() {
 
-        return muploads.size();
+        return mRestaurants.size();
     }
 
 
@@ -57,14 +53,15 @@ public class RestaurantAdapter extends RecyclerView.Adapter<RestaurantAdapter.Re
 
         public TextView restViewName;
         //public TextView restviewDescription;
-        public ImageView restImageView;
+        //public ImageView restImageView;
+        public TextView restViewDescription;
 
         public RestaurantViewHolder(@NonNull View itemView) {
             super(itemView);
 
             restViewName = itemView.findViewById(R.id.text_view_name);
-            restImageView = itemView.findViewById(R.id.image_view_upload);
-
+            //restImageView = itemView.findViewById(R.id.image_view_upload);
+            restViewDescription = itemView.findViewById(R.id.Rest_view_Description);
         }
     }
 }
