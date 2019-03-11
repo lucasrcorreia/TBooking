@@ -9,7 +9,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
-
 import rolu18oy.ju.se.layoutapp.Fragments.Booked_fragment;
 import rolu18oy.ju.se.layoutapp.Fragments.Restaurants_fragment;
 import rolu18oy.ju.se.layoutapp.Fragments.User_fragment;
@@ -25,7 +24,7 @@ public class NavigationActivity extends AppCompatActivity implements BottomNavig
         super.onCreate(savedInstanceState);
         setContentView(R.layout.navigation_activity);
 
-        SaveSharedPreference.setLoggedIn(getApplicationContext(), false, "no");
+        //SaveSharedPreference.setLoggedIn(getApplicationContext(), false, "no");
         //loading the default fragment
         loadFragment(new Restaurants_fragment());
 

@@ -7,6 +7,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,6 +16,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
@@ -30,7 +32,7 @@ public class login_nav_user_fragment extends Fragment {
 
     EditText userEmail, userPassword;
     Button UserLogin;
-    FirebaseAuth mAuth;
+    FirebaseAuth Auth;
 
     @Nullable
     @Override
@@ -41,7 +43,7 @@ public class login_nav_user_fragment extends Fragment {
             @Override
             public void onClick(View v) {
 
-                mAuth.signInWithEmailAndPassword(userEmail.getText().toString(),userPassword.getText().toString())
+                Auth.signInWithEmailAndPassword(userEmail.getText().toString(),userPassword.getText().toString())
                         .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                             @Override
                             public void onComplete(@NonNull Task<AuthResult> task) {
@@ -49,18 +51,28 @@ public class login_nav_user_fragment extends Fragment {
                                     SaveSharedPreference.setLoggedIn(getContext(), true, userEmail.getText().toString());
                                     Intent LOGIN = new Intent(getActivity(), NavigationActivity.class);
                                     getActivity().startActivity(LOGIN);
+                                    Log.d("Logined In", "Email sent.");
                                 }
                                 else {
                                     Toast.makeText(getActivity(), "Authentication failed.", Toast.LENGTH_SHORT).show();
+                                    Log.e("FIALED  ", "Sign-in Failed: " + task.getException().getMessage());
                                 }
                             }
-                        });
+                        }).addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Log.e("FIALED  ", "Sign-in Failed: " + e.getMessage());
+                        Log.d("auther",userEmail.getText().toString()+" "+userPassword.getText().toString());
+                        Toast.makeText(getActivity(), "Authentication failed.", Toast.LENGTH_SHORT).show();
+                    }
+                });
             }
         });
         return view;
     }
+
     public void init(){
-        mAuth = FirebaseAuth.getInstance();
+        Auth = FirebaseAuth.getInstance();
         userEmail = (EditText) view.findViewById(R.id.userEmail);
         userPassword = (EditText) view.findViewById(R.id.userPassword);
         UserLogin = (Button) view.findViewById(R.id.userLogin);
