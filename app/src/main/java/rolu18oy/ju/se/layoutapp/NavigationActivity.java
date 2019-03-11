@@ -9,26 +9,24 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
+
+import java.io.Serializable;
+
 import rolu18oy.ju.se.layoutapp.Fragments.Booked_fragment;
 import rolu18oy.ju.se.layoutapp.Fragments.Rest_description_fragment;
 import rolu18oy.ju.se.layoutapp.Fragments.Restaurants_fragment;
 import rolu18oy.ju.se.layoutapp.Fragments.User_fragment;
 import rolu18oy.ju.se.layoutapp.Model.Restaurant;
 
-public class NavigationActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener , HeadlinesFragment.OnHeadlineSelectedListener{
+public class NavigationActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener{
 
-    public String restaurant_selected;
     String email;
     SharedPreferences sp;
     String Login;
 
-    @Override
-    public void onAttachFragment(Fragment fragment) {
-        if (fragment instanceof HeadlinesFragment) {
-            HeadlinesFragment headlinesFragment = (HeadlinesFragment) fragment;
-            headlinesFragment.setOnHeadlineSelectedListener(this);
-        }
-    }
+
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -20,10 +20,12 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 import rolu18oy.ju.se.layoutapp.Model.Restaurant;
+import rolu18oy.ju.se.layoutapp.NavigationActivity;
 import rolu18oy.ju.se.layoutapp.R;
 import rolu18oy.ju.se.layoutapp.Model.RestaurantAdapter;
 
@@ -74,30 +76,25 @@ public class Restaurants_fragment extends Fragment {
             }
         });
 
+
         mRecyclerView.addOnItemTouchListener(
                 new RestaurantAdapter.RecyclerItemClickListener(getContext(), mRecyclerView ,new RestaurantAdapter.RecyclerItemClickListener.OnItemClickListener() {
                     @Override public void onItemClick(View view, int position) {
                         // do whatever
+
+                        Bundle args = new Bundle();
+                        args.putString("RestName",mRestaurants.get(position).getRestaurantName());
+                        args.putString("RestDescription",mRestaurants.get(position).getDescription());
+                        Rest_description_fragment newFragment = new Rest_description_fragment ();
+                        newFragment.setArguments(args);
                         getFragmentManager()
                                 .beginTransaction()
-                                .replace(R.id.fragment_container, new Rest_description_fragment())
+                                .replace(R.id.fragment_container, newFragment)
                                 .commit();
-
-                        Fragment passData  = new Fragment();
-                        final Bundle bundle= new Bundle();
-                        bundle.putString("RestoName:",mRestaurants.get(position).getRestaurantName());
-                        bundle.putString("RestoDiscription:",mRestaurants.get(position).getDescription());
-                        passData.setArguments(bundle);
-                        passData.setArguments(getArguments());
-                        getFragmentManager().beginTransaction().replace(R.id.Rest_description_fragment, passData).commit();
                     }
 
                     @Override public void onLongItemClick(View view, int position) {
                         // do whatever
-                        getFragmentManager()
-                                .beginTransaction()
-                                .replace(R.id.fragment_container, new Rest_description_fragment())
-                                .commit();
                     }
                 })
         );
