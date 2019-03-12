@@ -28,6 +28,7 @@ import rolu18oy.ju.se.layoutapp.Model.Restaurant;
 import rolu18oy.ju.se.layoutapp.NavigationActivity;
 import rolu18oy.ju.se.layoutapp.R;
 import rolu18oy.ju.se.layoutapp.Model.RestaurantAdapter;
+import rolu18oy.ju.se.layoutapp.SaveSharedPreference;
 
 
 public class Restaurants_fragment extends Fragment {
@@ -40,14 +41,12 @@ public class Restaurants_fragment extends Fragment {
     private List<Restaurant> mRestaurants;
 
 
-    @Nullable
-    @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.restaurant_fragment, null);
+    public void init(){
 
         mRecyclerView  = (RecyclerView) view.findViewById(rolu18oy.ju.se.layoutapp.R.id.recycler_view);
         mRecyclerView.setHasFixedSize(true);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+
 
 
         mProgressCircle = view.findViewById(rolu18oy.ju.se.layoutapp.R.id.progress_circle);
@@ -55,6 +54,14 @@ public class Restaurants_fragment extends Fragment {
         mRestaurants = new ArrayList<>();
 
         mDatabaseRef = FirebaseDatabase.getInstance().getReference("Restaurants");
+    }
+    @Nullable
+    @Override
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        view = inflater.inflate(R.layout.restaurant_fragment, null);
+
+        init();
+
 
         mDatabaseRef.addValueEventListener(new ValueEventListener() {
             @Override
@@ -64,7 +71,6 @@ public class Restaurants_fragment extends Fragment {
                     mRestaurants.add(restaurantUp);
                 }
                 mAdapater = new RestaurantAdapter(getActivity(),mRestaurants);
-
                 mRecyclerView.setAdapter(mAdapater);
                 mProgressCircle.setVisibility(View.INVISIBLE);
             }
@@ -85,6 +91,7 @@ public class Restaurants_fragment extends Fragment {
                         Bundle args = new Bundle();
                         args.putString("RestName",mRestaurants.get(position).getRestaurantName());
                         args.putString("RestDescription",mRestaurants.get(position).getDescription());
+
                         Rest_description_fragment newFragment = new Rest_description_fragment ();
                         newFragment.setArguments(args);
                         getFragmentManager()

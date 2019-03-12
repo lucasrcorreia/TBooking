@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.text.InputType;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -33,7 +34,6 @@ import com.google.firebase.database.ValueEventListener;
 import rolu18oy.ju.se.layoutapp.ForgotPasswordActivity;
 import rolu18oy.ju.se.layoutapp.LoginNavActivity;
 import rolu18oy.ju.se.layoutapp.Model.Restaurant;
-import rolu18oy.ju.se.layoutapp.Model.User;
 import rolu18oy.ju.se.layoutapp.R;
 import rolu18oy.ju.se.layoutapp.SaveSharedPreference;
 
@@ -127,6 +127,18 @@ public class r_restaurantinfo_fragment extends Fragment {
                 startActivity(intent);
             }
         });
+        ChangeRestname.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                changeRestName();
+            }
+        });
+        ChangeRestdesc.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                changeRestDescription();
+            }
+        });
 
         return view;
     }
@@ -197,5 +209,49 @@ public class r_restaurantinfo_fragment extends Fragment {
             }
         });
 
+    }
+    public void changeRestName(){
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+        builder.setTitle("Input your new name");
+
+        final EditText input = new EditText(getContext());
+        input.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
+        builder.setView(input);
+        builder.setPositiveButton("Change Name", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                restaurants.child("RestaurantName").setValue(input.getText().toString());
+            }
+        });
+        builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.cancel();
+            }
+        });
+        builder.show();
+    }
+    public void changeRestDescription(){
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+        builder.setTitle("Input your new Description");
+
+        final EditText input = new EditText(getContext());
+        input.setInputType(InputType.TYPE_CLASS_TEXT);
+        builder.setView(input);
+        builder.setPositiveButton("Change Description", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                restaurants.child("Description").setValue(input.getText().toString());
+            }
+        });
+        builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.cancel();
+            }
+        });
+        builder.show();
     }
 }
