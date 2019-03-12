@@ -16,7 +16,7 @@
             android:layout_height="100dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            android:src="@drawable/ic_restaurant_menu_black_24dp" />
+            android:src="@drawable/ic_event_seat_black_24dp" />
 
         <TextView
             android:id="@+id/text_view_name"
@@ -38,11 +38,14 @@
             android:layout_marginStart="16dp"
             android:layout_marginLeft="16dp"
             android:layout_marginTop="8dp"
-            android:text="Rest Description"
+            android:text="Number of people, date and time"
             android:textColor="@android:color/black"
             android:textSize="15sp"
             app:layout_constraintStart_toEndOf="@+id/image_view_upload"
             app:layout_constraintTop_toBottomOf="@+id/text_view_name" />
+
+
+
     </android.support.constraint.ConstraintLayout>
 
 
