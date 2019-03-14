@@ -91,6 +91,7 @@ public class Restaurants_fragment extends Fragment {
                         Bundle args = new Bundle();
                         args.putString("RestName",mRestaurants.get(position).getRestaurantName());
                         args.putString("RestDescription",mRestaurants.get(position).getDescription());
+                        args.putString("RestProfilePic", mRestaurants.get(position).getRestaurantProfile());
 
                         Rest_description_fragment newFragment = new Rest_description_fragment ();
                         newFragment.setArguments(args);
@@ -105,7 +106,6 @@ public class Restaurants_fragment extends Fragment {
                     }
                 })
         );
-
         return view;
     }
 }

@@ -38,11 +38,13 @@ public class Restaurant {
         RestaurantProfile = restaurantProfile;
     }
 
-    public Restaurant(String restaurantEmail, String restaurantName, String password, String description){
+    public Restaurant(String restaurantEmail, String restaurantName, String password, String description ,String restaurantprofile, String restaurantmenu){
         this.RestaurantEmail = restaurantEmail;
         this.RestaurantName = restaurantName;
         this.Password = password;
         this.Description = description;
+        this.RestaurantProfile = restaurantprofile;
+        this.RestaurantMenu = restaurantmenu;
     }
     public String getRestaurantEmail() {
         return RestaurantEmail;

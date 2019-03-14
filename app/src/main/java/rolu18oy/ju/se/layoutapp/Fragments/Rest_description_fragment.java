@@ -9,7 +9,10 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.squareup.picasso.Picasso;
 
 import rolu18oy.ju.se.layoutapp.NavigationActivity;
 import rolu18oy.ju.se.layoutapp.R;
@@ -31,8 +34,19 @@ public class Rest_description_fragment extends Fragment {
         String restName = b.getString("RestName");
         String restDesc = b.getString("RestDescription");
 
+        String restProfile = b.getString("RestProfilePic");
+
+
         textView.setText(restName);
         textView2.setText(restDesc);
+
+        ImageView profilePic = (ImageView) view.findViewById(R.id.imageView6);
+
+        Picasso.get().load(restProfile)
+                .fit()
+                .centerCrop()
+                .into(profilePic);
+
 
 
         return view;

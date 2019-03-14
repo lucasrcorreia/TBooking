@@ -11,6 +11,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,6 +22,7 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.Continuation;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -29,6 +31,7 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.storage.FileDownloadTask;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
@@ -70,7 +73,8 @@ public class createacc_nav_restaurant_fragment extends Fragment {
     private StorageReference mStorageRef;
     private DatabaseReference mDatabaseRef;
 
-    private StorageTask mUploadTask;
+    private StorageTask mUploadProfile;
+    private StorageTask mUploadMenu;
 
     FirebaseDatabase database;
     DatabaseReference restaurants;
@@ -135,20 +139,15 @@ public class createacc_nav_restaurant_fragment extends Fragment {
         ButtonCreateAccount.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (mUploadTask != null && mUploadTask.isInProgress()) {
+
+                if (mUploadProfile != null && mUploadProfile.isInProgress() || mUploadMenu != null && mUploadMenu.isInProgress()) {
                     Toast.makeText(getActivity(), "Upload in progress", Toast.LENGTH_SHORT).show();
                 } else {
                     if(!validateForm()){
                         return;
                     }
 
-                    uploadFile(mImageUriProfile, "ProfilePic");
-                    uploadFile(mImageUriMenu, "MenuPic");
-
-                    restaurant = new Restaurant(edtRestEmail.getText().toString().replace(".",","),
-                            edtRestName.getText().toString(),
-                            edtRestPassword.getText().toString(),
-                            edtrestDescription.getText().toString());
+                    uploadFile(mImageUriProfile, mImageUriMenu);
 
                     SaveSharedPreference.setLoggedIn(getContext(), true, restaurant.getPassword().replace(",","."));
                     createRestAccount();
@@ -174,61 +173,84 @@ public class createacc_nav_restaurant_fragment extends Fragment {
         MimeTypeMap mime = MimeTypeMap.getSingleton();
         return mime.getExtensionFromMimeType(cR.getType(uri));
     }
-    private void uploadFile(Uri mImageUri, final String ImageName){
 
-        if (mImageUri != null) {
-            StorageReference fileReference = mStorageRef.child(System.currentTimeMillis()
-                    + "." + getFileExtension(mImageUri));
+    private void uploadFile(Uri mImageUriProfile, Uri mImageUriMenu){
 
-            mUploadTask = fileReference.putFile(mImageUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+        if (mImageUriProfile != null || mImageUriMenu != null) {
+
+            final StorageReference fileReferenceProfile = mStorageRef.child(System.currentTimeMillis()
+                    + "." + getFileExtension(mImageUriProfile));
+
+
+            mUploadProfile = fileReferenceProfile.putFile(mImageUriProfile).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                 @Override
                 public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-
-                    Handler handler = new Handler();
-                    handler.postDelayed(new Runnable() {
+                    fileReferenceProfile.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                         @Override
-                        public void run() {
-                            mProgressBar.setProgress(0);
+                        public void onSuccess(Uri uri) {
+                            Handler handler = new Handler();
+                            handler.postDelayed(new Runnable() {
+                                @Override
+                                public void run() {
+                                    mProgressBar.setProgress(0);
+
+                                }
+                            }, 500);
+                            ImageProgileUri = uri.toString();
+                            restaurant.setRestaurantProfile(uri.toString());
+
                         }
-                    }, 500);
-
-                    if(ImageName == "ProfilePic"){
-                        //ImageProgileUri = ;
-                        restaurant.setRestaurantProfile(taskSnapshot.getStorage().getDownloadUrl().toString());
-                    }
-                    if(ImageName == "MenuPic"){
-                        restaurant.setRestaurantMenu(taskSnapshot.getStorage().getDownloadUrl().toString());
-                        //ImageMenuUri = taskSnapshot.getStorage().getDownloadUrl().toString();
-                    }
-
-                    Upload upload = new Upload(restaurant.getRestaurantName().trim(), taskSnapshot.getStorage().getDownloadUrl().toString());
-                    String uploadId = mDatabaseRef.push().getKey();
-                    mDatabaseRef.child(uploadId).setValue(upload);
-
-                    //ImageUrl = taskSnapshot.getStorage().getDownloadUrl().toString();
-
-                    //String ImageProgileUri;
-                    //String ImageMenuUri;
-
-
+                    });
                 }
             }).addOnFailureListener(new OnFailureListener() {
                 @Override
                 public void onFailure(@NonNull Exception e) {
 
                 }
-            }).addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
+            });
+
+            final StorageReference fileReferenceMenu = mStorageRef.child(System.currentTimeMillis()
+                    + "." + getFileExtension(mImageUriMenu));
+
+            mUploadMenu = fileReferenceMenu.putFile(mImageUriMenu).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                 @Override
-                public void onProgress(UploadTask.TaskSnapshot taskSnapshot) {
-                    double progress = (100.0 * taskSnapshot.getBytesTransferred() / taskSnapshot.getTotalByteCount());
-                    mProgressBar.setProgress((int) progress);
+                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                    fileReferenceMenu.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                        @Override
+                        public void onSuccess(Uri uri) {
+                            Handler handler = new Handler();
+                            handler.postDelayed(new Runnable() {
+                                @Override
+                                public void run() {
+                                    mProgressBar.setProgress(0);
+
+                                }
+                            }, 500);
+
+                            restaurant.setRestaurantMenu(uri.toString());
+                            ImageMenuUri = uri.toString();
+                        }
+                    });
+                }
+            }).addOnFailureListener(new OnFailureListener() {
+                @Override
+                public void onFailure(@NonNull Exception e) {
+
                 }
             });
+
+
         }
         else{
             Toast.makeText(getActivity(), "No file selected", Toast.LENGTH_SHORT).show();
         }
-        //return ImageUrl;
+
+
+        restaurant = new Restaurant(edtRestEmail.getText().toString().replace(".",","),
+                edtRestName.getText().toString(),
+                edtRestPassword.getText().toString(),
+                edtrestDescription.getText().toString(),ImageProgileUri,ImageMenuUri);
+
     }
     private void openFileChooserForProfile(){
         Intent intent = new Intent();

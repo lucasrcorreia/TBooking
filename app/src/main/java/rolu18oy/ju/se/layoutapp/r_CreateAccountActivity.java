@@ -136,7 +136,7 @@ public class r_CreateAccountActivity extends AppCompatActivity{
                     restaurant = new Restaurant(edtRestEmail.getText().toString().replace(".",","),
                             edtRestName.getText().toString(),
                             edtRestPassword.getText().toString(),
-                            edtrestDescription.getText().toString());
+                            edtrestDescription.getText().toString(),"hola","get");
 
                     SaveSharedPreference.setLoggedIn(getApplicationContext(), true, restaurant.getPassword().replace(",","."));
                     createRestAccount();
