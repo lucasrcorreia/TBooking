@@ -11,6 +11,7 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="8dp"
+        android:onClick="create_table_frag_start"
         android:text="Create new free table" />
 
     <ProgressBar

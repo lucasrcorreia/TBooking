@@ -1,5 +1,6 @@
 package rolu18oy.ju.se.layoutapp;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -7,7 +8,9 @@ import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
+import android.view.View;
 
+import rolu18oy.ju.se.layoutapp.Fragments.create_table_fragment;
 import rolu18oy.ju.se.layoutapp.Fragments.r_bookedtables_fragment;
 import rolu18oy.ju.se.layoutapp.Fragments.r_freetables_fragment;
 import rolu18oy.ju.se.layoutapp.Fragments.r_restaurantinfo_fragment;
@@ -63,6 +66,10 @@ public class r_NavigationActivity extends AppCompatActivity implements BottomNav
             return true;
         }
         return false;
+    }
+
+    public void create_table_frag_start (View view){
+        loadFragment(new create_table_fragment());
     }
 
 }
