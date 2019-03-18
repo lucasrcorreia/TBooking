@@ -3,6 +3,7 @@ package rolu18oy.ju.se.layoutapp.Fragments;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -22,6 +23,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import rolu18oy.ju.se.layoutapp.Model.BookedRestaurantAdapter;
+import rolu18oy.ju.se.layoutapp.Model.DeleteDialog_bookedtables;
+import rolu18oy.ju.se.layoutapp.Model.DeleteDialog_bookings;
 import rolu18oy.ju.se.layoutapp.Model.Restaurant;
 import rolu18oy.ju.se.layoutapp.Model.RestaurantAdapter;
 import rolu18oy.ju.se.layoutapp.R;
@@ -80,7 +83,7 @@ public class Booked_fragment extends Fragment {
                     public void onItemClick(View view, int position) {
                         // do whatever
 
-                        Bundle args = new Bundle();
+                      /*  Bundle args = new Bundle();
                         args.putString("RestName", mRestaurants.get(position).getRestaurantName());
                         args.putString("RestDescription", mRestaurants.get(position).getDescription());
                         Book_description_fragment newFragment = new Book_description_fragment();
@@ -88,12 +91,14 @@ public class Booked_fragment extends Fragment {
                         getFragmentManager()
                                 .beginTransaction()
                                 .replace(R.id.fragment_container, newFragment)
-                                .commit();
+                                .commit();*/
                     }
 
                     @Override
                     public void onLongItemClick(View view, int position) {
                         // do whatever
+                        DialogFragment dialog = new DeleteDialog_bookings();
+                        dialog.show(getActivity().getSupportFragmentManager(), "dialog_date3");
                     }
                 })
         );

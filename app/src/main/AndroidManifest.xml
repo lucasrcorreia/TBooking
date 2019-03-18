@@ -38,9 +38,6 @@
         <activity
             android:name=".r_NavigationActivity"
             android:screenOrientation="portrait" />
-        <activity
-            android:name=".r_CreateAccountActivity"
-            android:screenOrientation="portrait" />
     </application>
 
 </manifest>

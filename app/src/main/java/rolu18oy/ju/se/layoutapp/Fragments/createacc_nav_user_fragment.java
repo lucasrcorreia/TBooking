@@ -27,7 +27,6 @@ import rolu18oy.ju.se.layoutapp.Model.User;
 import rolu18oy.ju.se.layoutapp.NavigationActivity;
 import rolu18oy.ju.se.layoutapp.R;
 import rolu18oy.ju.se.layoutapp.SaveSharedPreference;
-import rolu18oy.ju.se.layoutapp.r_CreateAccountActivity;
 
 
 public class createacc_nav_user_fragment extends Fragment {
@@ -56,10 +55,6 @@ public class createacc_nav_user_fragment extends Fragment {
         edtlastname = (EditText) view.findViewById(R.id.last_name);
 
         btnCreateAccount = (Button) view.findViewById(R.id.signup);
-    }
-    public void startCreateRestAct (View view){
-        Intent intent = new Intent(getActivity(), r_CreateAccountActivity.class);
-        startActivity(intent);
     }
 
     @Nullable

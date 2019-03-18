@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
+import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -16,6 +17,7 @@ import rolu18oy.ju.se.layoutapp.Fragments.Booked_fragment;
 import rolu18oy.ju.se.layoutapp.Fragments.Rest_description_fragment;
 import rolu18oy.ju.se.layoutapp.Fragments.Restaurants_fragment;
 import rolu18oy.ju.se.layoutapp.Fragments.User_fragment;
+import rolu18oy.ju.se.layoutapp.Model.DatePickerFragment;
 import rolu18oy.ju.se.layoutapp.Model.Restaurant;
 
 public class NavigationActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener{
@@ -84,6 +86,11 @@ public class NavigationActivity extends AppCompatActivity implements BottomNavig
     public void LogOutstartLoginAct (View view){
         Intent intent = new Intent(this, LoginNavActivity.class);
         startActivity(intent);
+    }
+
+    public void showDatePickerDialog(View v) {
+        DialogFragment newFragment = new DatePickerFragment();
+        newFragment.show(getSupportFragmentManager(), "datePicker");
     }
 
 }

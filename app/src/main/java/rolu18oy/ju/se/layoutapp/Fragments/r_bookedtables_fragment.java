@@ -3,6 +3,7 @@ package rolu18oy.ju.se.layoutapp.Fragments;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -22,6 +23,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import rolu18oy.ju.se.layoutapp.Model.BookedTableAdapter;
+import rolu18oy.ju.se.layoutapp.Model.DeleteDialog_bookedtables;
+import rolu18oy.ju.se.layoutapp.Model.DeleteDialog_freetables;
 import rolu18oy.ju.se.layoutapp.Model.FreeTableAdapter;
 import rolu18oy.ju.se.layoutapp.Model.Restaurant;
 import rolu18oy.ju.se.layoutapp.R;
@@ -85,6 +88,8 @@ public class r_bookedtables_fragment extends Fragment {
                     @Override
                     public void onLongItemClick(View view, int position) {
                         // do whatever
+                        DialogFragment dialog = new DeleteDialog_bookedtables();
+                        dialog.show(getActivity().getSupportFragmentManager(), "dialog_date2");
                     }
                 })
         );

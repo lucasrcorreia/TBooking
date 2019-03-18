@@ -9,6 +9,9 @@ import android.widget.DatePicker;
 
 import java.util.Calendar;
 
+import rolu18oy.ju.se.layoutapp.Fragments.table_select_fragment;
+import rolu18oy.ju.se.layoutapp.R;
+
 public class DatePickerFragment extends DialogFragment
         implements DatePickerDialog.OnDateSetListener {
 
@@ -16,12 +19,13 @@ public class DatePickerFragment extends DialogFragment
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         // Use the current date as the default date in the picker
         final Calendar c = Calendar.getInstance();
+        c.add(Calendar.DAY_OF_MONTH, 1);
         int year = c.get(Calendar.YEAR);
         int month = c.get(Calendar.MONTH);
         int day = c.get(Calendar.DAY_OF_MONTH);
 
         DatePickerDialog mDatePicker = new DatePickerDialog(getActivity(), this, year, month, day);
-        mDatePicker.getDatePicker().setMinDate(System.currentTimeMillis());
+        mDatePicker.getDatePicker().setMinDate(c.getTimeInMillis());
 
         // Create a new instance of DatePickerDialog and return it
         return mDatePicker;
@@ -30,5 +34,9 @@ public class DatePickerFragment extends DialogFragment
 
     public void onDateSet(DatePicker view, int year, int month, int day) {
         // Do something with the date chosen by the user
+        getFragmentManager()
+                .beginTransaction()
+                .replace(R.id.fragment_container, new table_select_fragment())
+                .commit();
     }
 }

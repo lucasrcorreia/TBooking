@@ -47,11 +47,9 @@ public class Rest_description_fragment extends Fragment {
 
 
 
+
         return view;
     }
-    public void showDatePickerDialog(View v) {
-        DialogFragment newFragment = new DatePickerFragment();
-        newFragment.show(getFragmentManager(), "datePicker");
-    }
+
 
 }
