@@ -44,10 +44,6 @@ public class Rest_description_fragment extends Fragment {
                 .fit()
                 .centerCrop()
                 .into(profilePic);
-
-
-
-
         return view;
     }
 
