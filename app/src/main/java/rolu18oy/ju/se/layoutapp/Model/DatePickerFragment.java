@@ -9,11 +9,15 @@ import android.widget.DatePicker;
 
 import java.util.Calendar;
 
+import rolu18oy.ju.se.layoutapp.Fragments.Rest_description_fragment;
 import rolu18oy.ju.se.layoutapp.Fragments.table_select_fragment;
 import rolu18oy.ju.se.layoutapp.R;
 
 public class DatePickerFragment extends DialogFragment
         implements DatePickerDialog.OnDateSetListener {
+
+    String restEmail;
+    String RestName;
 
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
@@ -24,6 +28,11 @@ public class DatePickerFragment extends DialogFragment
         int month = c.get(Calendar.MONTH);
         int day = c.get(Calendar.DAY_OF_MONTH);
 
+        Bundle b = getArguments();
+        restEmail = b.getString("RestEmail");
+        RestName = b.getString("RestName");
+
+
         DatePickerDialog mDatePicker = new DatePickerDialog(getActivity(), this, year, month, day);
         mDatePicker.getDatePicker().setMinDate(c.getTimeInMillis());
 
@@ -33,10 +42,22 @@ public class DatePickerFragment extends DialogFragment
     }
 
     public void onDateSet(DatePicker view, int year, int month, int day) {
-        // Do something with the date chosen by the user
+        Bundle args = new Bundle();
+
+        args.putInt("year",year);
+        args.putInt("month",month);
+        args.putInt("day",day);
+        args.putString("RestEmail",restEmail);
+        args.putString("RestName",RestName);
+
+
+
+
+        table_select_fragment newFragment = new table_select_fragment ();
+        newFragment.setArguments(args);
         getFragmentManager()
                 .beginTransaction()
-                .replace(R.id.fragment_container, new table_select_fragment())
+                .replace(R.id.fragment_container, newFragment)
                 .commit();
     }
 }

@@ -27,7 +27,9 @@ import rolu18oy.ju.se.layoutapp.Model.DeleteDialog_bookedtables;
 import rolu18oy.ju.se.layoutapp.Model.DeleteDialog_bookings;
 import rolu18oy.ju.se.layoutapp.Model.Restaurant;
 import rolu18oy.ju.se.layoutapp.Model.RestaurantAdapter;
+import rolu18oy.ju.se.layoutapp.Model.Restaurant_bookings;
 import rolu18oy.ju.se.layoutapp.R;
+import rolu18oy.ju.se.layoutapp.SaveSharedPreference;
 
 
 public class Booked_fragment extends Fragment {
@@ -37,7 +39,9 @@ public class Booked_fragment extends Fragment {
     private ProgressBar mProgressCircle;
 
     private DatabaseReference mDatabaseRef;
-    private List<Restaurant> mRestaurants;
+    private List<Restaurant_bookings> mRestaurants;
+    List<String> BookingID;
+    String userID;
 
 
     @Nullable
@@ -54,14 +58,29 @@ public class Booked_fragment extends Fragment {
 
         mRestaurants = new ArrayList<>();
 
-        mDatabaseRef = FirebaseDatabase.getInstance().getReference("Restaurants");
+        BookingID = new ArrayList<>();
+
+        userID = SaveSharedPreference.getLoggedEmail(getContext()).replace(".",",");
+
+        mDatabaseRef = FirebaseDatabase.getInstance().getReference("RestaurantsBooking");
 
         mDatabaseRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                mRestaurants.clear();
                 for (DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
-                    Restaurant restaurantUp = postSnapshot.getValue(Restaurant.class);
-                    mRestaurants.add(restaurantUp);
+                    for (DataSnapshot postSnapshot2 : postSnapshot.getChildren()) {
+                        for (DataSnapshot postSnapshot3 : postSnapshot2.getChildren()) {
+                            Restaurant_bookings restaurantUp = postSnapshot3.getValue(Restaurant_bookings.class);
+                            if(restaurantUp.getUserID().equals(userID)){
+                                mRestaurants.add(restaurantUp);
+                                BookingID.add(restaurantUp.getId());
+                            }
+
+                        }
+
+                    }
+
                 }
                 mAdapater = new BookedRestaurantAdapter(getActivity(), mRestaurants);
 
@@ -85,7 +104,7 @@ public class Booked_fragment extends Fragment {
 
                       /*  Bundle args = new Bundle();
                         args.putString("RestName", mRestaurants.get(position).getRestaurantName());
-                        args.putString("RestDescription", mRestaurants.get(position).getDescription());
+                        argsoo.putString("RestDescription", mRestaurants.get(position).getDescription());
                         Book_description_fragment newFragment = new Book_description_fragment();
                         newFragment.setArguments(args);
                         getFragmentManager()
@@ -96,8 +115,12 @@ public class Booked_fragment extends Fragment {
 
                     @Override
                     public void onLongItemClick(View view, int position) {
+
+                        Bundle a = new Bundle();
+                        a.putString("BookingID",BookingID.get(position));
                         // do whatever
                         DialogFragment dialog = new DeleteDialog_bookings();
+                        dialog.setArguments(a);
                         dialog.show(getActivity().getSupportFragmentManager(), "dialog_date3");
                     }
                 })
@@ -105,4 +128,5 @@ public class Booked_fragment extends Fragment {
 
         return view;
     }
+
 }

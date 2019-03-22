@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.text.InputType;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -51,7 +52,17 @@ public class User_fragment extends Fragment {
 
     User user;
 
+    public void refreshFragment(){
+        Fragment frg = null;
+        frg = getFragmentManager().findFragmentByTag("user_fragment");
+        final FragmentTransaction ft = getFragmentManager().beginTransaction();
+        ft.detach(frg);
+        ft.attach(frg);
+        ft.commit();
+    }
+
     public void init() {
+
         sp = this.getActivity().getSharedPreferences("login", Context.MODE_PRIVATE);
         btnChangePass = (Button) view.findViewById(R.id.btnChangePass);
         logout = (Button) view.findViewById(R.id.logout);
@@ -93,6 +104,7 @@ public class User_fragment extends Fragment {
             @Override
             public void onClick(View v) {
                 RefreshNavigationActivity();
+
             }
         });
 
@@ -100,6 +112,7 @@ public class User_fragment extends Fragment {
             @Override
             public void onClick(View v) {
                 confirmPassword(Email);
+                refreshFragment();
 
             }
         });
@@ -115,7 +128,7 @@ public class User_fragment extends Fragment {
         return view;
     }
     public void RefreshNavigationActivity(){
-        SaveSharedPreference.setLoggedIn(getContext(), false, "");
+        SaveSharedPreference.setLoggedIn(getContext(), false, "","");
         Intent intent = new Intent(getActivity(), LoginNavActivity.class);
         startActivity(intent);
     }

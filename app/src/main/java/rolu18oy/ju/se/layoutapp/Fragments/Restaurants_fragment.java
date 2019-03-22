@@ -66,6 +66,7 @@ public class Restaurants_fragment extends Fragment {
         mDatabaseRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+            mRestaurants.clear();
                 for (DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
                     Restaurant restaurantUp = postSnapshot.getValue(Restaurant.class);
                     mRestaurants.add(restaurantUp);
@@ -89,6 +90,7 @@ public class Restaurants_fragment extends Fragment {
                         // do whatever
 
                         Bundle args = new Bundle();
+                        args.putString("RestEmail",mRestaurants.get(position).getRestaurantEmail());
                         args.putString("RestName",mRestaurants.get(position).getRestaurantName());
                         args.putString("RestDescription",mRestaurants.get(position).getDescription());
                         args.putString("RestProfilePic", mRestaurants.get(position).getRestaurantProfile());

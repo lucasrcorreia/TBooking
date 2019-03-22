@@ -27,7 +27,9 @@ import rolu18oy.ju.se.layoutapp.Model.DeleteDialog_bookedtables;
 import rolu18oy.ju.se.layoutapp.Model.DeleteDialog_freetables;
 import rolu18oy.ju.se.layoutapp.Model.FreeTableAdapter;
 import rolu18oy.ju.se.layoutapp.Model.Restaurant;
+import rolu18oy.ju.se.layoutapp.Model.Restaurant_bookings;
 import rolu18oy.ju.se.layoutapp.R;
+import rolu18oy.ju.se.layoutapp.SaveSharedPreference;
 
 
 public class r_bookedtables_fragment extends Fragment {
@@ -37,7 +39,10 @@ public class r_bookedtables_fragment extends Fragment {
     private ProgressBar mProgressCircle;
 
     private DatabaseReference mDatabaseRef;
-    private List<Restaurant> mRestaurants;
+    private List<Restaurant_bookings> mRestaurants;
+    List<String> booking_id;
+
+    String Email;
 
 
     @Nullable
@@ -45,24 +50,35 @@ public class r_bookedtables_fragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.r_bookedtables_fragment, null);
 
+        Email = SaveSharedPreference.getLoggedEmail(getContext());
+
         mRecyclerView = (RecyclerView) view.findViewById(rolu18oy.ju.se.layoutapp.R.id.recycler_view);
         mRecyclerView.setHasFixedSize(true);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        booking_id = new ArrayList<>();
 
 
         mProgressCircle = view.findViewById(rolu18oy.ju.se.layoutapp.R.id.progress_circle);
 
         mRestaurants = new ArrayList<>();
 
-        mDatabaseRef = FirebaseDatabase.getInstance().getReference("Restaurants");
+        mDatabaseRef = FirebaseDatabase.getInstance().getReference("RestaurantsBooking/"+Email.replace(".",","));
 
         mDatabaseRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                mRestaurants.clear();
                 for (DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
-                    Restaurant restaurantUp = postSnapshot.getValue(Restaurant.class);
-                    mRestaurants.add(restaurantUp);
+
+                    for (DataSnapshot postSnapshot2 : postSnapshot.getChildren()) {
+
+                        Restaurant_bookings restaurantUp = postSnapshot2.getValue(Restaurant_bookings.class);
+                        mRestaurants.add(restaurantUp);
+                        booking_id.add(restaurantUp.getId());
+                    }
+
                 }
+
                 mAdapater = new BookedTableAdapter(getActivity(), mRestaurants);
 
                 mRecyclerView.setAdapter(mAdapater);
@@ -82,13 +98,18 @@ public class r_bookedtables_fragment extends Fragment {
                     @Override
                     public void onItemClick(View view, int position) {
                         // do whatever
-
                     }
 
                     @Override
                     public void onLongItemClick(View view, int position) {
+
+                        Bundle a = new Bundle();
+
+                        a.putString("bookingID",booking_id.get(position));
+
                         // do whatever
                         DialogFragment dialog = new DeleteDialog_bookedtables();
+                        dialog.setArguments(a);
                         dialog.show(getActivity().getSupportFragmentManager(), "dialog_date2");
                     }
                 })

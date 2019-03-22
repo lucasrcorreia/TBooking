@@ -25,7 +25,9 @@ import java.util.List;
 import rolu18oy.ju.se.layoutapp.Model.DeleteDialog_freetables;
 import rolu18oy.ju.se.layoutapp.Model.FreeTableAdapter;
 import rolu18oy.ju.se.layoutapp.Model.Restaurant;
+import rolu18oy.ju.se.layoutapp.Model.RestaurantTable;
 import rolu18oy.ju.se.layoutapp.R;
+import rolu18oy.ju.se.layoutapp.SaveSharedPreference;
 
 
 public class r_freetables_fragment extends Fragment {
@@ -35,7 +37,9 @@ public class r_freetables_fragment extends Fragment {
     private ProgressBar mProgressCircle;
 
     private DatabaseReference mDatabaseRef;
-    private List<Restaurant> mRestaurants;
+    private List<RestaurantTable> mRestaurants;
+    String Email;
+    List<String> tableID;
 
 
     @Nullable
@@ -46,20 +50,24 @@ public class r_freetables_fragment extends Fragment {
         mRecyclerView = (RecyclerView) view.findViewById(rolu18oy.ju.se.layoutapp.R.id.recycler_view);
         mRecyclerView.setHasFixedSize(true);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-
+        Email = SaveSharedPreference.getLoggedEmail(getContext());
 
         mProgressCircle = view.findViewById(rolu18oy.ju.se.layoutapp.R.id.progress_circle);
 
+        tableID = new ArrayList<>();
+
         mRestaurants = new ArrayList<>();
 
-        mDatabaseRef = FirebaseDatabase.getInstance().getReference("Restaurants");
+        mDatabaseRef = FirebaseDatabase.getInstance().getReference("RestaurantsTables/"+Email.replace(".",","));
 
         mDatabaseRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                mRestaurants.clear();
                 for (DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
-                    Restaurant restaurantUp = postSnapshot.getValue(Restaurant.class);
+                    RestaurantTable restaurantUp = postSnapshot.getValue(RestaurantTable.class);
                     mRestaurants.add(restaurantUp);
+                    tableID.add(restaurantUp.getTableId());
                 }
                 mAdapater = new FreeTableAdapter(getActivity(), mRestaurants);
 
@@ -86,7 +94,11 @@ public class r_freetables_fragment extends Fragment {
                     @Override
                     public void onLongItemClick(View view, int position) {
                         // do whatever
+
+                        Bundle a = new Bundle();
+                        a.putString("tableID",tableID.get(position));
                         DialogFragment dialog = new DeleteDialog_freetables();
+                        dialog.setArguments(a);
                         dialog.show(getActivity().getSupportFragmentManager(), "dialog_date");
                     }
                 })

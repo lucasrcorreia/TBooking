@@ -4,7 +4,7 @@
     <item
         android:id="@+id/navigation_freetables"
         android:icon="@drawable/ic_event_available_white_24dp"
-        android:title="@string/free" />
+        android:title="Tables" />
 
     <item
         android:id="@+id/navigation_bookedtables"

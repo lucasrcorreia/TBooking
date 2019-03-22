@@ -17,9 +17,9 @@ import rolu18oy.ju.se.layoutapp.R;
 public class FreeTableAdapter extends RecyclerView.Adapter<FreeTableAdapter.RestaurantViewHolder> {
 
     private Context mContext;
-    private List<Restaurant> mRestaurants;
+    private List<RestaurantTable> mRestaurants;
 
-    public FreeTableAdapter(Context context , List<Restaurant> restaurants){
+    public FreeTableAdapter(Context context , List<RestaurantTable> restaurants){
         mContext = context;
         mRestaurants = restaurants;
     }
@@ -34,9 +34,9 @@ public class FreeTableAdapter extends RecyclerView.Adapter<FreeTableAdapter.Rest
 
     @Override
     public void onBindViewHolder(@NonNull RestaurantViewHolder restaurantViewHolder, int position) {
-        Restaurant uploadCurrent = mRestaurants.get(position);
-        restaurantViewHolder.restViewName.setText(uploadCurrent.getRestaurantName());
-        restaurantViewHolder.restViewDescription.setText(uploadCurrent.getDescription());
+        RestaurantTable uploadCurrent = mRestaurants.get(position);
+        restaurantViewHolder.restViewName.setText("Number of people: "+Integer.toString(uploadCurrent.getNumberOfPeople()));
+        restaurantViewHolder.restViewDescription.setText(uploadCurrent.getTableId());
         /*Picasso.get().load(uploadCurrent.getImageUrl())
                 //.centerInside()
                 .fit()

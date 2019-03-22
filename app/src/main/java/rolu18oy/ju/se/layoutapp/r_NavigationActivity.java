@@ -17,17 +17,18 @@ import rolu18oy.ju.se.layoutapp.Fragments.r_restaurantinfo_fragment;
 
 public class r_NavigationActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener {
 
-    String email;
-    SharedPreferences sp;
-    String Login;
+    String tag;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.r_navigation_activity);
 
+        //SaveSharedPreference.setLoggedIn(getApplicationContext(), false, "","");
         //loading the default fragment
-        loadFragment(new r_freetables_fragment());
+        tag = "r_freetables_fragment";
+        loadFragment(new r_freetables_fragment(), tag);
 
         //getting bottom navigation view and attaching the listener
         BottomNavigationView navigation = findViewById(R.id.R_navigation);
@@ -42,34 +43,53 @@ public class r_NavigationActivity extends AppCompatActivity implements BottomNav
         switch (item.getItemId()) {
             case R.id.navigation_freetables:
                 fragment = new r_freetables_fragment();
+                tag = "r_freetables_fragment";
                 break;
 
             case R.id.navigation_bookedtables:
                 fragment = new r_bookedtables_fragment();
+                tag = "r_bookedtables_fragment";
                 break;
 
             case R.id.navigation_restaurantinfo:
                 fragment = new r_restaurantinfo_fragment();
+                tag = "r_restaurantinfo_fragment";
                 break;
         }
 
-        return loadFragment(fragment);
+        return loadFragment(fragment, tag);
     }
 
-    private boolean loadFragment(Fragment fragment) {
+    private boolean loadFragment(Fragment fragment, String tag) {
         //switching fragment
         if (fragment != null) {
             getSupportFragmentManager()
                     .beginTransaction()
-                    .replace(R.id.R_fragment_container, fragment)
+                    .replace(R.id.R_fragment_container, fragment, tag)
                     .commit();
             return true;
         }
         return false;
     }
 
-    public void create_table_frag_start (View view){
-        loadFragment(new create_table_fragment());
+    public void create_table_frag_start(View view) {
+        loadFragment(new create_table_fragment(), "create_table_fragment");
     }
 
+    @Override
+    public void onBackPressed() {
+
+        Fragment fragment = getSupportFragmentManager().findFragmentByTag("r_freetables_fragment");
+        if (fragment != null && fragment.isVisible()) {
+            Intent a = new Intent(Intent.ACTION_MAIN);
+            a.addCategory(Intent.CATEGORY_HOME);
+            a.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(a);
+        } else {
+            Intent a = new Intent(this, NavigationActivity.class);
+            startActivity(a);
+        }
+
+        //super.onBackPressed();
+    }
 }

@@ -62,6 +62,15 @@ public class r_restaurantinfo_fragment extends Fragment {
 
     Restaurant restaurant;
 
+    public void refreshFragment(){
+        Fragment frg = null;
+        frg = getFragmentManager().findFragmentByTag("r_restaurantinfo_fragment");
+        final FragmentTransaction ft = getFragmentManager().beginTransaction();
+        ft.detach(frg);
+        ft.attach(frg);
+        ft.commit();
+    }
+
     public void init(){
         sp = this.getActivity().getSharedPreferences("login", Context.MODE_PRIVATE);
         database = FirebaseDatabase.getInstance();
@@ -131,19 +140,22 @@ public class r_restaurantinfo_fragment extends Fragment {
             @Override
             public void onClick(View v) {
                 changeRestName();
+                refreshFragment();
+
             }
         });
         ChangeRestdesc.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 changeRestDescription();
+                refreshFragment();
             }
         });
 
         return view;
     }
     public void RefreshNavigationActivity(){
-        SaveSharedPreference.setLoggedIn(getContext(), false, "");
+        SaveSharedPreference.setLoggedIn(getContext(), false, "","");
         Intent intent = new Intent(getActivity(), LoginNavActivity.class);
         startActivity(intent);
     }
@@ -200,8 +212,14 @@ public class r_restaurantinfo_fragment extends Fragment {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 restaurant = dataSnapshot.getValue(Restaurant.class);
-                RestName.setText(restaurant.getRestaurantName());
-                RestDescription.setText(restaurant.getDescription());
+                if(restaurant == null){
+                    SaveSharedPreference.setLoggedIn(getContext(), false, "","");
+                }
+                else{
+                    RestName.setText(restaurant.getRestaurantName());
+                    RestDescription.setText(restaurant.getDescription());
+                }
+
             }
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {

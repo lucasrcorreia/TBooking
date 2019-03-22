@@ -88,7 +88,7 @@ public class createacc_nav_user_fragment extends Fragment {
 
                         else{
 
-                            SaveSharedPreference.setLoggedIn(getContext(), true, user.getEmail().replace(",","."));
+                            SaveSharedPreference.setLoggedIn(getContext(), true, user.getEmail().replace(",","."),"user");
                             createUserAccount();
                             Intent intent = new Intent(getActivity(), NavigationActivity.class);
                             startActivity(intent);
@@ -107,7 +107,7 @@ public class createacc_nav_user_fragment extends Fragment {
                 .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
-                        users.child(user.getEmail()).setValue(user);
+                        users.child(user.getEmail().toLowerCase()).setValue(user);
                     }
                 });
     }

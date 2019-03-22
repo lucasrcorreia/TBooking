@@ -17,9 +17,9 @@ import rolu18oy.ju.se.layoutapp.R;
 public class BookedRestaurantAdapter extends RecyclerView.Adapter<BookedRestaurantAdapter.RestaurantViewHolder> {
 
     private Context mContext;
-    private List<Restaurant> mRestaurants;
+    private List<Restaurant_bookings> mRestaurants;
 
-    public BookedRestaurantAdapter(Context context , List<Restaurant> restaurants){
+    public BookedRestaurantAdapter(Context context , List<Restaurant_bookings> restaurants){
         mContext = context;
         mRestaurants = restaurants;
     }
@@ -34,9 +34,10 @@ public class BookedRestaurantAdapter extends RecyclerView.Adapter<BookedRestaura
 
     @Override
     public void onBindViewHolder(@NonNull RestaurantViewHolder restaurantViewHolder, int position) {
-        Restaurant uploadCurrent = mRestaurants.get(position);
-        restaurantViewHolder.restViewName.setText(uploadCurrent.getRestaurantName());
-        restaurantViewHolder.restViewDescription.setText(uploadCurrent.getDescription());
+        Restaurant_bookings uploadCurrent = mRestaurants.get(position);
+        restaurantViewHolder.restViewName.setText(uploadCurrent.getRestname()+": booked for "+uploadCurrent.getNumberofpeople()+" person(s)");
+        restaurantViewHolder.restViewDescription.setText(
+                "Date: "+Integer.toString(uploadCurrent.getDay())+"/"+Integer.toString(uploadCurrent.getMonth())+"/"+Integer.toString(uploadCurrent.getYear())+" - "+Integer.toString(uploadCurrent.getHour())+":00 H");
         /*Picasso.get().load(uploadCurrent.getImageUrl())
                 //.centerInside()
                 .fit()

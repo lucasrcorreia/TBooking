@@ -7,6 +7,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -18,6 +19,8 @@ import rolu18oy.ju.se.layoutapp.R;
 
 public class Rest_description_fragment extends Fragment {
     View view;
+    String restEmail;
+    String restName;
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -29,11 +32,11 @@ public class Rest_description_fragment extends Fragment {
         TextView textView2 = (TextView) view.findViewById(R.id.textView2);
 
         Bundle b = getArguments();
-        String restName = b.getString("RestName");
+        restName = b.getString("RestName");
         String restDesc = b.getString("RestDescription");
-
         String restProfile = b.getString("RestProfilePic");
-
+        restEmail = b.getString("RestEmail");
+        Button datepicker = (Button) view.findViewById(R.id.buttonDatePicker);
 
         textView.setText(restName);
         textView2.setText(restDesc);
@@ -44,6 +47,25 @@ public class Rest_description_fragment extends Fragment {
                 .fit()
                 .centerCrop()
                 .into(profilePic);
+
+        datepicker.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Bundle args = new Bundle();
+
+                args.putString("RestEmail",restEmail);
+                args.putString("RestName",restName);
+
+
+                DialogFragment newFragment = new DatePickerFragment ();
+                newFragment.setArguments(args);
+                newFragment.show(getFragmentManager(), "datePicker");
+
+            }
+        });
+
+
         return view;
     }
 

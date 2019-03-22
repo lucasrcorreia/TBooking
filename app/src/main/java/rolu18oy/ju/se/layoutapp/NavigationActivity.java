@@ -1,5 +1,6 @@
 package rolu18oy.ju.se.layoutapp;
 
+import android.app.Application;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.annotation.NonNull;
@@ -25,6 +26,7 @@ public class NavigationActivity extends AppCompatActivity implements BottomNavig
     String email;
     SharedPreferences sp;
     String Login;
+    String tag;
 
 
 
@@ -35,9 +37,10 @@ public class NavigationActivity extends AppCompatActivity implements BottomNavig
         super.onCreate(savedInstanceState);
         setContentView(R.layout.navigation_activity);
 
-        SaveSharedPreference.setLoggedIn(getApplicationContext(), false, "no");
+        //SaveSharedPreference.setLoggedIn(getApplicationContext(), false, "","");
         //loading the default fragment
-        loadFragment(new Restaurants_fragment());
+        tag = "rest_fragment";
+        loadFragment(new Restaurants_fragment(), tag);
 
         //getting bottom navigation view and attaching the listener
         BottomNavigationView navigation = findViewById(R.id.navigation);
@@ -52,26 +55,29 @@ public class NavigationActivity extends AppCompatActivity implements BottomNavig
         switch (item.getItemId()) {
             case R.id.navigation_restaurants:
                 fragment = new Restaurants_fragment();
+                tag="rest_fragment";
                 break;
 
             case R.id.navigation_booked:
                 fragment = new Booked_fragment();
+                tag="booked_fragment";
                 break;
 
             case R.id.navigation_user:
                 fragment = new User_fragment();
+                tag="user_fragment";
                 break;
         }
 
-        return loadFragment(fragment);
+        return loadFragment(fragment, tag);
     }
 
-    private boolean loadFragment(Fragment fragment) {
+    private boolean loadFragment(Fragment fragment, String tag) {
         //switching fragment
         if (fragment != null) {
             getSupportFragmentManager()
                     .beginTransaction()
-                    .replace(R.id.fragment_container, fragment)
+                    .replace(R.id.fragment_container,fragment,tag)
                     .commit();
             return true;
         }
@@ -88,9 +94,20 @@ public class NavigationActivity extends AppCompatActivity implements BottomNavig
         startActivity(intent);
     }
 
-    public void showDatePickerDialog(View v) {
-        DialogFragment newFragment = new DatePickerFragment();
-        newFragment.show(getSupportFragmentManager(), "datePicker");
-    }
+    @Override
+    public void onBackPressed() {
 
+        Fragment fragment = getSupportFragmentManager().findFragmentByTag("rest_fragment");
+        if(fragment!=null && fragment.isVisible()){
+            Intent a = new Intent(Intent.ACTION_MAIN);
+            a.addCategory(Intent.CATEGORY_HOME);
+            a.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(a);
+        }else{
+            Intent a = new Intent(this, NavigationActivity.class);
+            startActivity(a);
+        }
+
+        //super.onBackPressed();
+    }
 }

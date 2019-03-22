@@ -11,7 +11,6 @@ import android.widget.TextView;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
 
-import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
@@ -41,11 +40,11 @@ public class RestaurantAdapter extends RecyclerView.Adapter<RestaurantAdapter.Re
         Restaurant uploadCurrent = mRestaurants.get(position);
         restaurantViewHolder.restViewName.setText(uploadCurrent.getRestaurantName());
         restaurantViewHolder.restViewDescription.setText(uploadCurrent.getDescription());
-        Picasso.get().load(uploadCurrent.getRestaurantProfile())
+       /* Picasso.get().load(uploadCurrent.getRestaurantProfile())
                 .fit()
                 .centerCrop()
                 .placeholder(R.drawable.progress_animation)
-                .into(restaurantViewHolder.restImageView);
+                .into(restaurantViewHolder.restImageView);*/
     }
 
     @Override
@@ -65,7 +64,7 @@ public class RestaurantAdapter extends RecyclerView.Adapter<RestaurantAdapter.Re
         public RestaurantViewHolder(@NonNull View itemView) {
             super(itemView);
             restViewName = itemView.findViewById(R.id.text_view_name);
-            restImageView = itemView.findViewById(R.id.image_view_upload);
+           restImageView = itemView.findViewById(R.id.image_view_upload);
             restViewDescription = itemView.findViewById(R.id.Rest_view_Description);
         }
     }

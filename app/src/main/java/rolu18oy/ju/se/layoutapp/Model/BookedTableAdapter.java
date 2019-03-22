@@ -10,6 +10,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
 import java.util.List;
 
 import rolu18oy.ju.se.layoutapp.R;
@@ -17,9 +23,12 @@ import rolu18oy.ju.se.layoutapp.R;
 public class BookedTableAdapter extends RecyclerView.Adapter<BookedTableAdapter.RestaurantViewHolder> {
 
     private Context mContext;
-    private List<Restaurant> mRestaurants;
+    private List<Restaurant_bookings> mRestaurants;
+    FirebaseDatabase database;
+    DatabaseReference users;
+    String Fullname;
 
-    public BookedTableAdapter(Context context , List<Restaurant> restaurants){
+    public BookedTableAdapter(Context context , List<Restaurant_bookings> restaurants){
         mContext = context;
         mRestaurants = restaurants;
     }
@@ -29,14 +38,41 @@ public class BookedTableAdapter extends RecyclerView.Adapter<BookedTableAdapter.
         /*view v = LayoutInflater.from(mContext).inflate(R.layout.restaurant_item,viewGroup );*/
         View v = LayoutInflater.from(mContext).inflate(R.layout.table_item, viewGroup,false);
 
+        database = FirebaseDatabase.getInstance();
+
+
         return new RestaurantViewHolder(v);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull RestaurantViewHolder restaurantViewHolder, int position) {
-        Restaurant uploadCurrent = mRestaurants.get(position);
-        restaurantViewHolder.restViewName.setText(uploadCurrent.getRestaurantName());
-        restaurantViewHolder.restViewDescription.setText(uploadCurrent.getDescription());
+    public void onBindViewHolder(@NonNull final RestaurantViewHolder restaurantViewHolder, int position) {
+
+
+
+        final Restaurant_bookings uploadCurrent = mRestaurants.get(position);
+
+        users = database.getReference("Users/"+uploadCurrent.getUserID());
+
+        users.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                User user = dataSnapshot.getValue(User.class);
+                Fullname = user.getFirstName() +" "+ user.getLastName();
+
+                restaurantViewHolder.restViewName.setText(Fullname+" table for: "+uploadCurrent.getNumberofpeople());
+                restaurantViewHolder.restViewDescription.setText(
+                        "Date: "+Integer.toString(uploadCurrent.getDay())+"/"+Integer.toString(uploadCurrent.getMonth())+"/"+Integer.toString(uploadCurrent.getYear())+" - "+Integer.toString(uploadCurrent.getHour())+":00 H");
+
+
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
+
+
         /*Picasso.get().load(uploadCurrent.getImageUrl())
                 //.centerInside()
                 .fit()

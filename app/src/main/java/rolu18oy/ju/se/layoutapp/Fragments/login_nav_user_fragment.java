@@ -43,12 +43,16 @@ public class login_nav_user_fragment extends Fragment {
             @Override
             public void onClick(View v) {
 
-                Auth.signInWithEmailAndPassword(userEmail.getText().toString(),userPassword.getText().toString())
+                if(!validateForm()){
+                    return;
+                }
+
+                Auth.signInWithEmailAndPassword(userEmail.getText().toString().toLowerCase(),userPassword.getText().toString())
                         .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                             @Override
                             public void onComplete(@NonNull Task<AuthResult> task) {
                                 if (task.isSuccessful()) {
-                                    SaveSharedPreference.setLoggedIn(getContext(), true, userEmail.getText().toString());
+                                    SaveSharedPreference.setLoggedIn(getContext(), true, userEmail.getText().toString(),"user");
                                     Intent LOGIN = new Intent(getActivity(), NavigationActivity.class);
                                     getActivity().startActivity(LOGIN);
                                     Log.d("Logined In", "Email sent.");
@@ -76,5 +80,30 @@ public class login_nav_user_fragment extends Fragment {
         userEmail = (EditText) view.findViewById(R.id.userEmail);
         userPassword = (EditText) view.findViewById(R.id.userPassword);
         UserLogin = (Button) view.findViewById(R.id.userLogin);
+    }
+
+    private boolean validateForm() {
+        boolean valid = true;
+
+        String email = userEmail.getText().toString();
+        if (TextUtils.isEmpty(email)) {
+            userEmail.setError("Required.");
+            valid = false;
+        } else {
+            userEmail.setError(null);
+        }
+
+        String password = userPassword.getText().toString();
+        if (TextUtils.isEmpty(password)) {
+            userPassword.setError("Required.");
+            valid = false;
+        } else {
+            userPassword.setError(null);
+        }
+        if(password.length()<6){
+            userPassword.setError("Password has to be greater than 6");
+            valid = false;
+        }
+        return valid;
     }
 }

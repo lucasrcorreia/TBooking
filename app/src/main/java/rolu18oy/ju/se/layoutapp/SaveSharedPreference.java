@@ -12,9 +12,10 @@ public class SaveSharedPreference {
         return PreferenceManager.getDefaultSharedPreferences(context);
     }
 
-    public static void setLoggedIn(Context context, boolean loggedIn, String email) {
+    public static void setLoggedIn(Context context, boolean loggedIn, String email, String Identification) {
         SharedPreferences.Editor editor = getPreferences(context).edit();
         editor.putString("Email",email);
+        editor.putString("Identification",Identification);
         editor.putBoolean(LOGGED_IN_PREF, loggedIn);
         editor.apply();
     }
@@ -24,5 +25,8 @@ public class SaveSharedPreference {
     }
     public static String getLoggedEmail(Context context){
         return getPreferences(context).getString("Email","");
+    }
+    public static String getLoggedIdentification(Context context){
+        return getPreferences(context).getString("Identification","");
     }
 }
