@@ -69,6 +69,7 @@
             android:background="@color/colorFacebook"
             android:text="@string/sign_in_with_facebook"
             android:textColor="@color/colorTextWhite"
+            android:visibility="gone"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/userLogin" />
@@ -81,6 +82,7 @@
             android:layout_marginTop="16dp"
             android:layout_marginEnd="48dp"
             android:background="@color/colorGoogle"
+            android:visibility="gone"
             android:text="@string/sign_in_with_google"
             android:textColor="@color/colorTextBlack"
             app:layout_constraintEnd_toEndOf="parent"

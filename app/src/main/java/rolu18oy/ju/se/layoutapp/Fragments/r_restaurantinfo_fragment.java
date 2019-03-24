@@ -212,14 +212,8 @@ public class r_restaurantinfo_fragment extends Fragment {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 restaurant = dataSnapshot.getValue(Restaurant.class);
-                if(restaurant == null){
-                    SaveSharedPreference.setLoggedIn(getContext(), false, "","");
-                }
-                else{
-                    RestName.setText(restaurant.getRestaurantName());
-                    RestDescription.setText(restaurant.getDescription());
-                }
-
+                RestName.setText(restaurant.getRestaurantName());
+                RestDescription.setText(restaurant.getDescription());
             }
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {

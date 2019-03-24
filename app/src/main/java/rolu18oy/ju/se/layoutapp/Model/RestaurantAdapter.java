@@ -40,11 +40,11 @@ public class RestaurantAdapter extends RecyclerView.Adapter<RestaurantAdapter.Re
         Restaurant uploadCurrent = mRestaurants.get(position);
         restaurantViewHolder.restViewName.setText(uploadCurrent.getRestaurantName());
         restaurantViewHolder.restViewDescription.setText(uploadCurrent.getDescription());
-       /* Picasso.get().load(uploadCurrent.getRestaurantProfile())
+       Picasso.get().load(uploadCurrent.getRestaurantProfile())
                 .fit()
                 .centerCrop()
                 .placeholder(R.drawable.progress_animation)
-                .into(restaurantViewHolder.restImageView);*/
+                .into(restaurantViewHolder.restImageView);
     }
 
     @Override

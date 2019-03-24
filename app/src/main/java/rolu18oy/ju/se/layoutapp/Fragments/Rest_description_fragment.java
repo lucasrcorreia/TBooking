@@ -1,5 +1,6 @@
 package rolu18oy.ju.se.layoutapp.Fragments;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.DialogFragment;
@@ -13,8 +14,11 @@ import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
 
+import rolu18oy.ju.se.layoutapp.LoginNavActivity;
 import rolu18oy.ju.se.layoutapp.Model.DatePickerFragment;
+import rolu18oy.ju.se.layoutapp.NavigationActivity;
 import rolu18oy.ju.se.layoutapp.R;
+import rolu18oy.ju.se.layoutapp.SaveSharedPreference;
 
 
 public class Rest_description_fragment extends Fragment {
@@ -52,15 +56,23 @@ public class Rest_description_fragment extends Fragment {
             @Override
             public void onClick(View v) {
 
-                Bundle args = new Bundle();
+                if(!SaveSharedPreference.getLoggedStatus(getContext())) {
 
-                args.putString("RestEmail",restEmail);
-                args.putString("RestName",restName);
+                    Intent a = new Intent(getActivity(), LoginNavActivity.class);
+                    startActivity(a);
+
+                }else {
+
+                    Bundle args = new Bundle();
+
+                    args.putString("RestEmail", restEmail);
+                    args.putString("RestName", restName);
 
 
-                DialogFragment newFragment = new DatePickerFragment ();
-                newFragment.setArguments(args);
-                newFragment.show(getFragmentManager(), "datePicker");
+                    DialogFragment newFragment = new DatePickerFragment();
+                    newFragment.setArguments(args);
+                    newFragment.show(getFragmentManager(), "datePicker");
+                }
 
             }
         });

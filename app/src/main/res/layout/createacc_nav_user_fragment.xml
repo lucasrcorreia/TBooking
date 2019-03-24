@@ -103,6 +103,7 @@
         android:text="@string/sign_up_with_facebook"
         android:textColor="@color/colorTextWhite"
         app:layout_constraintEnd_toEndOf="parent"
+        android:visibility="gone"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/signup" />
 
@@ -116,6 +117,7 @@
         android:background="@color/colorGoogle"
         android:text="@string/sign_up_with_google"
         android:textColor="@color/colorTextBlack"
+        android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/fb_signup" />
